@@ -3,6 +3,9 @@ package internal
 import (
 	"context"
 	"fmt"
+	"net/http"
+	"net/url"
+	"strings"
 
 	datadog "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -44,17 +47,40 @@ func (m *datadogModule) Init() error {
 		"site": site,
 	})
 
-	// If custom apiUrl provided, override the server index
+	// If custom apiUrl provided, install a URL-rewriting HTTP transport so all
+	// Datadog SDK calls (including operation-specific endpoints like logs intake)
+	// are redirected to the target URL. This is necessary because the SDK creates
+	// fresh Configuration/APIClient instances in each step and some API operations
+	// use hardcoded server templates that can't be overridden via context variables.
 	if apiUrl, ok := m.config["apiUrl"].(string); ok && apiUrl != "" {
-		ctx = context.WithValue(ctx, datadog.ContextServerIndex, 0)
-		ctx = context.WithValue(ctx, datadog.ContextServerVariables, map[string]string{
-			"site": site,
-		})
-		_ = apiUrl // URL override handled via ContextServerVariables site
+		target, err := url.Parse(strings.TrimRight(apiUrl, "/"))
+		if err != nil {
+			return fmt.Errorf("datadog.provider %q: invalid apiUrl: %w", m.name, err)
+		}
+		base := http.DefaultTransport
+		if base == nil {
+			base = &http.Transport{}
+		}
+		http.DefaultTransport = &urlRewriteTransport{target: target, base: base}
 	}
 
 	RegisterClient(m.name, &datadogContext{ctx: ctx, site: site})
 	return nil
+}
+
+// urlRewriteTransport rewrites all outgoing HTTP requests to point to a target URL,
+// preserving the original request path and query. Used for mock/test redirection.
+type urlRewriteTransport struct {
+	target *url.URL
+	base   http.RoundTripper
+}
+
+func (t *urlRewriteTransport) RoundTrip(req *http.Request) (*http.Response, error) {
+	req2 := req.Clone(req.Context())
+	req2.URL.Scheme = t.target.Scheme
+	req2.URL.Host = t.target.Host
+	req2.Host = t.target.Host
+	return t.base.RoundTrip(req2)
 }
 
 // Start is a no-op for this module.

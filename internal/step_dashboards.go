@@ -174,7 +174,7 @@ func (s *dashboardListStep) Execute(ctx context.Context, _ map[string]any, _ map
 	for _, d := range resp.Dashboards {
 		dashboards = append(dashboards, map[string]any{
 			"id":    derefStr(d.Id),
-			"title": d.Title,
+			"title": derefStr(d.Title),
 			"url":   derefStr(d.Url),
 		})
 	}
