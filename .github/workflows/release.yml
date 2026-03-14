@@ -31,3 +31,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GOPRIVATE: github.com/GoCodeAlone/*
           GONOSUMCHECK: github.com/GoCodeAlone/*
+
+  notify-registry:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [goreleaser]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify workflow-registry
+        if: env.GH_TOKEN != ''
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.REGISTRY_PAT }}
+          repository: GoCodeAlone/workflow-registry
+          event-type: plugin-release
+          client-payload: >-
+            {"plugin": "${{ github.repository }}", "tag": "${{ github.ref_name }}"}
+        env:
+          GH_TOKEN: ${{ secrets.REGISTRY_PAT }}
+        continue-on-error: true
