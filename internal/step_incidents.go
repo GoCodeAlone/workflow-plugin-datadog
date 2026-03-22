@@ -37,7 +37,7 @@ func (s *incidentCreateStep) Execute(ctx context.Context, _ map[string]any, _ ma
 			},
 		},
 	}
-	api := datadogV2.NewIncidentsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewIncidentsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateIncident(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -67,7 +67,7 @@ func (s *incidentGetStep) Execute(ctx context.Context, _ map[string]any, _ map[s
 	if incidentID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "incident_id is required"}}, nil
 	}
-	api := datadogV2.NewIncidentsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewIncidentsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.GetIncident(ddCtx.ctx, incidentID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -107,7 +107,7 @@ func (s *incidentUpdateStep) Execute(ctx context.Context, _ map[string]any, _ ma
 	if title := resolveValue("title", current, config); title != "" {
 		body.Data.Attributes.SetTitle(title)
 	}
-	api := datadogV2.NewIncidentsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewIncidentsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.UpdateIncident(ddCtx.ctx, incidentID, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -137,7 +137,7 @@ func (s *incidentDeleteStep) Execute(ctx context.Context, _ map[string]any, _ ma
 	if incidentID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "incident_id is required"}}, nil
 	}
-	api := datadogV2.NewIncidentsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewIncidentsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, err := api.DeleteIncident(ddCtx.ctx, incidentID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -160,7 +160,7 @@ func (s *incidentListStep) Execute(ctx context.Context, _ map[string]any, _ map[
 	if !ok {
 		return &sdk.StepResult{Output: map[string]any{"error": "datadog client not found: " + s.moduleName}}, nil
 	}
-	api := datadogV2.NewIncidentsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewIncidentsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListIncidents(ddCtx.ctx)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -206,7 +206,7 @@ func (s *incidentTodoCreateStep) Execute(ctx context.Context, _ map[string]any, 
 			},
 		},
 	}
-	api := datadogV2.NewIncidentsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewIncidentsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateIncidentTodo(ddCtx.ctx, incidentID, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -250,7 +250,7 @@ func (s *incidentTodoUpdateStep) Execute(ctx context.Context, _ map[string]any, 
 	if completed {
 		body.Data.Attributes.SetCompleted("true")
 	}
-	api := datadogV2.NewIncidentsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewIncidentsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.UpdateIncidentTodo(ddCtx.ctx, incidentID, todoID, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -281,7 +281,7 @@ func (s *incidentTodoDeleteStep) Execute(ctx context.Context, _ map[string]any, 
 	if incidentID == "" || todoID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "incident_id and todo_id are required"}}, nil
 	}
-	api := datadogV2.NewIncidentsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewIncidentsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, err := api.DeleteIncidentTodo(ddCtx.ctx, incidentID, todoID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil

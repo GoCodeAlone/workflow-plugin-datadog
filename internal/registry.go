@@ -2,13 +2,27 @@ package internal
 
 import (
 	"context"
+	"net/http"
 	"sync"
+
+	datadog "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // datadogContext holds the authenticated context for Datadog API calls.
 type datadogContext struct {
-	ctx  context.Context
-	site string
+	ctx        context.Context
+	site       string
+	httpClient *http.Client // non-nil only when apiUrl is configured
+}
+
+// newConfig returns a datadog.Configuration with the module-scoped HTTP client
+// injected (when apiUrl was set), so steps never need to touch http.DefaultTransport.
+func (c *datadogContext) newConfig() *datadog.Configuration {
+	cfg := datadog.NewConfiguration()
+	if c.httpClient != nil {
+		cfg.HTTPClient = c.httpClient
+	}
+	return cfg
 }
 
 var (

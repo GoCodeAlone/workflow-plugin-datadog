@@ -44,7 +44,7 @@ func (s *downtimeCreateStep) Execute(ctx context.Context, _ map[string]any, _ ma
 	if msg := resolveValue("message", current, config); msg != "" {
 		body.SetMessage(msg)
 	}
-	api := datadogV1.NewDowntimesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewDowntimesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateDowntime(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -75,7 +75,7 @@ func (s *downtimeGetStep) Execute(ctx context.Context, _ map[string]any, _ map[s
 	if downtimeID == 0 {
 		return &sdk.StepResult{Output: map[string]any{"error": "downtime_id is required"}}, nil
 	}
-	api := datadogV1.NewDowntimesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewDowntimesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.GetDowntime(ddCtx.ctx, downtimeID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -113,7 +113,7 @@ func (s *downtimeUpdateStep) Execute(ctx context.Context, _ map[string]any, _ ma
 	if scope := resolveValue("scope", current, config); scope != "" {
 		body.SetScope([]string{scope})
 	}
-	api := datadogV1.NewDowntimesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewDowntimesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.UpdateDowntime(ddCtx.ctx, downtimeID, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -143,7 +143,7 @@ func (s *downtimeCancelStep) Execute(ctx context.Context, _ map[string]any, _ ma
 	if downtimeID == 0 {
 		return &sdk.StepResult{Output: map[string]any{"error": "downtime_id is required"}}, nil
 	}
-	api := datadogV1.NewDowntimesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewDowntimesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, err := api.CancelDowntime(ddCtx.ctx, downtimeID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -170,7 +170,7 @@ func (s *downtimeListStep) Execute(ctx context.Context, _ map[string]any, _ map[
 	if current_only := resolveBool("current_only", current, config); current_only {
 		params.WithCurrentOnly(true)
 	}
-	api := datadogV1.NewDowntimesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewDowntimesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListDowntimes(ddCtx.ctx, *params)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil

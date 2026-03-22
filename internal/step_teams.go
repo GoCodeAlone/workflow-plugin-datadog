@@ -43,7 +43,7 @@ func (s *teamCreateStep) Execute(ctx context.Context, _ map[string]any, _ map[st
 	if desc := resolveValue("description", current, config); desc != "" {
 		body.Data.Attributes.SetDescription(desc)
 	}
-	api := datadogV2.NewTeamsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewTeamsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateTeam(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -74,7 +74,7 @@ func (s *teamGetStep) Execute(ctx context.Context, _ map[string]any, _ map[strin
 	if teamID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "team_id is required"}}, nil
 	}
-	api := datadogV2.NewTeamsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewTeamsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.GetTeam(ddCtx.ctx, teamID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -119,7 +119,7 @@ func (s *teamUpdateStep) Execute(ctx context.Context, _ map[string]any, _ map[st
 			},
 		},
 	}
-	api := datadogV2.NewTeamsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewTeamsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.UpdateTeam(ddCtx.ctx, teamID, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -150,7 +150,7 @@ func (s *teamDeleteStep) Execute(ctx context.Context, _ map[string]any, _ map[st
 	if teamID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "team_id is required"}}, nil
 	}
-	api := datadogV2.NewTeamsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewTeamsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, err := api.DeleteTeam(ddCtx.ctx, teamID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -173,7 +173,7 @@ func (s *teamListStep) Execute(ctx context.Context, _ map[string]any, _ map[stri
 	if !ok {
 		return &sdk.StepResult{Output: map[string]any{"error": "datadog client not found: " + s.moduleName}}, nil
 	}
-	api := datadogV2.NewTeamsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewTeamsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListTeams(ddCtx.ctx)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -225,7 +225,7 @@ func (s *teamMemberAddStep) Execute(ctx context.Context, _ map[string]any, _ map
 			},
 		},
 	}
-	api := datadogV2.NewTeamsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewTeamsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateTeamMembership(ddCtx.ctx, teamID, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -257,7 +257,7 @@ func (s *teamMemberRemoveStep) Execute(ctx context.Context, _ map[string]any, _ 
 	if teamID == "" || userID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "team_id and user_id are required"}}, nil
 	}
-	api := datadogV2.NewTeamsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewTeamsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, err := api.DeleteTeamMembership(ddCtx.ctx, teamID, userID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil

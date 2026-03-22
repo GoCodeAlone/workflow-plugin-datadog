@@ -48,7 +48,7 @@ func (s *apmRetentionFilterCreateStep) Execute(ctx context.Context, _ map[string
 			Type: datadogV2.APMRETENTIONFILTERTYPE_apm_retention_filter,
 		},
 	}
-	api := datadogV2.NewAPMRetentionFiltersApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewAPMRetentionFiltersApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateApmRetentionFilter(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -101,7 +101,7 @@ func (s *apmRetentionFilterUpdateStep) Execute(ctx context.Context, _ map[string
 			},
 		},
 	}
-	api := datadogV2.NewAPMRetentionFiltersApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewAPMRetentionFiltersApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.UpdateApmRetentionFilter(ddCtx.ctx, filterID, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -132,7 +132,7 @@ func (s *apmRetentionFilterDeleteStep) Execute(ctx context.Context, _ map[string
 	if filterID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "filter_id is required"}}, nil
 	}
-	api := datadogV2.NewAPMRetentionFiltersApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewAPMRetentionFiltersApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, err := api.DeleteApmRetentionFilter(ddCtx.ctx, filterID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -155,7 +155,7 @@ func (s *apmRetentionFilterListStep) Execute(ctx context.Context, _ map[string]a
 	if !ok {
 		return &sdk.StepResult{Output: map[string]any{"error": "datadog client not found: " + s.moduleName}}, nil
 	}
-	api := datadogV2.NewAPMRetentionFiltersApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewAPMRetentionFiltersApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListApmRetentionFilters(ddCtx.ctx)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -197,7 +197,7 @@ func (s *spanSearchStep) Execute(ctx context.Context, _ map[string]any, _ map[st
 			Type: &reqType,
 		},
 	}
-	api := datadogV2.NewSpansApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewSpansApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListSpans(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -239,7 +239,7 @@ func (s *spanAggregateStep) Execute(ctx context.Context, _ map[string]any, _ map
 			Type: &reqType,
 		},
 	}
-	api := datadogV2.NewSpansApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewSpansApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.AggregateSpans(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil

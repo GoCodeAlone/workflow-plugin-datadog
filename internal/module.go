@@ -47,24 +47,21 @@ func (m *datadogModule) Init() error {
 		"site": site,
 	})
 
-	// If custom apiUrl provided, install a URL-rewriting HTTP transport so all
-	// Datadog SDK calls (including operation-specific endpoints like logs intake)
-	// are redirected to the target URL. This is necessary because the SDK creates
-	// fresh Configuration/APIClient instances in each step and some API operations
-	// use hardcoded server templates that can't be overridden via context variables.
+	// If custom apiUrl provided, build a module-scoped http.Client that rewrites
+	// outgoing request URLs. We never touch http.DefaultTransport so other plugins'
+	// HTTP clients are unaffected.
+	var scopedClient *http.Client
 	if apiUrl, ok := m.config["apiUrl"].(string); ok && apiUrl != "" {
 		target, err := url.Parse(strings.TrimRight(apiUrl, "/"))
 		if err != nil {
 			return fmt.Errorf("datadog.provider %q: invalid apiUrl: %w", m.name, err)
 		}
-		base := http.DefaultTransport
-		if base == nil {
-			base = &http.Transport{}
+		scopedClient = &http.Client{
+			Transport: &urlRewriteTransport{target: target, base: http.DefaultTransport},
 		}
-		http.DefaultTransport = &urlRewriteTransport{target: target, base: base}
 	}
 
-	RegisterClient(m.name, &datadogContext{ctx: ctx, site: site})
+	RegisterClient(m.name, &datadogContext{ctx: ctx, site: site, httpClient: scopedClient})
 	return nil
 }
 

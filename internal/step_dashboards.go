@@ -39,7 +39,7 @@ func (s *dashboardCreateStep) Execute(ctx context.Context, _ map[string]any, _ m
 	if desc := resolveValue("description", current, config); desc != "" {
 		body.SetDescription(desc)
 	}
-	api := datadogV1.NewDashboardsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewDashboardsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateDashboard(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -70,7 +70,7 @@ func (s *dashboardGetStep) Execute(ctx context.Context, _ map[string]any, _ map[
 	if dashboardID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "dashboard_id is required"}}, nil
 	}
-	api := datadogV1.NewDashboardsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewDashboardsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.GetDashboard(ddCtx.ctx, dashboardID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -112,7 +112,7 @@ func (s *dashboardUpdateStep) Execute(ctx context.Context, _ map[string]any, _ m
 		LayoutType: layoutType,
 		Widgets:    []datadogV1.Widget{},
 	}
-	api := datadogV1.NewDashboardsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewDashboardsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.UpdateDashboard(ddCtx.ctx, dashboardID, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -142,7 +142,7 @@ func (s *dashboardDeleteStep) Execute(ctx context.Context, _ map[string]any, _ m
 	if dashboardID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "dashboard_id is required"}}, nil
 	}
-	api := datadogV1.NewDashboardsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewDashboardsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.DeleteDashboard(ddCtx.ctx, dashboardID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -165,7 +165,7 @@ func (s *dashboardListStep) Execute(ctx context.Context, _ map[string]any, _ map
 	if !ok {
 		return &sdk.StepResult{Output: map[string]any{"error": "datadog client not found: " + s.moduleName}}, nil
 	}
-	api := datadogV1.NewDashboardsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewDashboardsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListDashboards(ddCtx.ctx)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil

@@ -43,7 +43,7 @@ func (s *notebookCreateStep) Execute(ctx context.Context, _ map[string]any, _ ma
 			},
 		},
 	}
-	api := datadogV1.NewNotebooksApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewNotebooksApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateNotebook(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -74,7 +74,7 @@ func (s *notebookGetStep) Execute(ctx context.Context, _ map[string]any, _ map[s
 	if notebookID == 0 {
 		return &sdk.StepResult{Output: map[string]any{"error": "notebook_id is required"}}, nil
 	}
-	api := datadogV1.NewNotebooksApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewNotebooksApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.GetNotebook(ddCtx.ctx, notebookID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -116,7 +116,7 @@ func (s *notebookUpdateStep) Execute(ctx context.Context, _ map[string]any, _ ma
 			},
 		},
 	}
-	api := datadogV1.NewNotebooksApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewNotebooksApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.UpdateNotebook(ddCtx.ctx, notebookID, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -147,7 +147,7 @@ func (s *notebookDeleteStep) Execute(ctx context.Context, _ map[string]any, _ ma
 	if notebookID == 0 {
 		return &sdk.StepResult{Output: map[string]any{"error": "notebook_id is required"}}, nil
 	}
-	api := datadogV1.NewNotebooksApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewNotebooksApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, err := api.DeleteNotebook(ddCtx.ctx, notebookID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -174,7 +174,7 @@ func (s *notebookListStep) Execute(ctx context.Context, _ map[string]any, _ map[
 	if q := resolveValue("query", current, config); q != "" {
 		params.WithQuery(q)
 	}
-	api := datadogV1.NewNotebooksApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewNotebooksApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListNotebooks(ddCtx.ctx, *params)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil

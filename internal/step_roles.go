@@ -35,7 +35,7 @@ func (s *roleCreateStep) Execute(ctx context.Context, _ map[string]any, _ map[st
 			},
 		},
 	}
-	api := datadogV2.NewRolesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewRolesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateRole(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -66,7 +66,7 @@ func (s *roleGetStep) Execute(ctx context.Context, _ map[string]any, _ map[strin
 	if roleID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "role_id is required"}}, nil
 	}
-	api := datadogV2.NewRolesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewRolesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.GetRole(ddCtx.ctx, roleID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -107,7 +107,7 @@ func (s *roleUpdateStep) Execute(ctx context.Context, _ map[string]any, _ map[st
 			},
 		},
 	}
-	api := datadogV2.NewRolesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewRolesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.UpdateRole(ddCtx.ctx, roleID, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -138,7 +138,7 @@ func (s *roleDeleteStep) Execute(ctx context.Context, _ map[string]any, _ map[st
 	if roleID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "role_id is required"}}, nil
 	}
-	api := datadogV2.NewRolesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewRolesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, err := api.DeleteRole(ddCtx.ctx, roleID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -161,7 +161,7 @@ func (s *roleListStep) Execute(ctx context.Context, _ map[string]any, _ map[stri
 	if !ok {
 		return &sdk.StepResult{Output: map[string]any{"error": "datadog client not found: " + s.moduleName}}, nil
 	}
-	api := datadogV2.NewRolesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewRolesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListRoles(ddCtx.ctx)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -206,7 +206,7 @@ func (s *rolePermissionAddStep) Execute(ctx context.Context, _ map[string]any, _
 			Id:   &permissionID,
 		},
 	}
-	api := datadogV2.NewRolesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewRolesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.AddPermissionToRole(ddCtx.ctx, roleID, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -241,7 +241,7 @@ func (s *rolePermissionRemoveStep) Execute(ctx context.Context, _ map[string]any
 			Id:   &permissionID,
 		},
 	}
-	api := datadogV2.NewRolesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewRolesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, _, err := api.RemovePermissionFromRole(ddCtx.ctx, roleID, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil

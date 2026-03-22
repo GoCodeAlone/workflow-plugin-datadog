@@ -35,7 +35,7 @@ func (s *apiKeyCreateStep) Execute(ctx context.Context, _ map[string]any, _ map[
 			},
 		},
 	}
-	api := datadogV2.NewKeyManagementApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewKeyManagementApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateAPIKey(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -66,7 +66,7 @@ func (s *apiKeyGetStep) Execute(ctx context.Context, _ map[string]any, _ map[str
 	if keyID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "key_id is required"}}, nil
 	}
-	api := datadogV2.NewKeyManagementApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewKeyManagementApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.GetAPIKey(ddCtx.ctx, keyID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -107,7 +107,7 @@ func (s *apiKeyUpdateStep) Execute(ctx context.Context, _ map[string]any, _ map[
 			},
 		},
 	}
-	api := datadogV2.NewKeyManagementApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewKeyManagementApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.UpdateAPIKey(ddCtx.ctx, keyID, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -138,7 +138,7 @@ func (s *apiKeyDeleteStep) Execute(ctx context.Context, _ map[string]any, _ map[
 	if keyID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "key_id is required"}}, nil
 	}
-	api := datadogV2.NewKeyManagementApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewKeyManagementApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, err := api.DeleteAPIKey(ddCtx.ctx, keyID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -161,7 +161,7 @@ func (s *apiKeyListStep) Execute(ctx context.Context, _ map[string]any, _ map[st
 	if !ok {
 		return &sdk.StepResult{Output: map[string]any{"error": "datadog client not found: " + s.moduleName}}, nil
 	}
-	api := datadogV2.NewKeyManagementApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewKeyManagementApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListAPIKeys(ddCtx.ctx)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -207,7 +207,7 @@ func (s *appKeyCreateStep) Execute(ctx context.Context, _ map[string]any, _ map[
 			},
 		},
 	}
-	api := datadogV2.NewKeyManagementApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewKeyManagementApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateCurrentUserApplicationKey(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -234,7 +234,7 @@ func (s *appKeyListStep) Execute(ctx context.Context, _ map[string]any, _ map[st
 	if !ok {
 		return &sdk.StepResult{Output: map[string]any{"error": "datadog client not found: " + s.moduleName}}, nil
 	}
-	api := datadogV2.NewKeyManagementApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewKeyManagementApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListApplicationKeys(ddCtx.ctx)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -272,7 +272,7 @@ func (s *appKeyDeleteStep) Execute(ctx context.Context, _ map[string]any, _ map[
 	if keyID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "key_id is required"}}, nil
 	}
-	api := datadogV2.NewKeyManagementApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewKeyManagementApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, err := api.DeleteCurrentUserApplicationKey(ddCtx.ctx, keyID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil

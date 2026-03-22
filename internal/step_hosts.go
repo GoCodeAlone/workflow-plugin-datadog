@@ -27,7 +27,7 @@ func (s *hostListStep) Execute(ctx context.Context, _ map[string]any, _ map[stri
 	if filter := resolveValue("filter", current, config); filter != "" {
 		params.WithFilter(filter)
 	}
-	api := datadogV1.NewHostsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewHostsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListHosts(ddCtx.ctx, *params)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -65,7 +65,7 @@ func (s *hostMuteStep) Execute(ctx context.Context, _ map[string]any, _ map[stri
 	if msg := resolveValue("message", current, config); msg != "" {
 		body.SetMessage(msg)
 	}
-	api := datadogV1.NewHostsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewHostsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.MuteHost(ddCtx.ctx, hostName, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -95,7 +95,7 @@ func (s *hostUnmuteStep) Execute(ctx context.Context, _ map[string]any, _ map[st
 	if hostName == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "host_name is required"}}, nil
 	}
-	api := datadogV1.NewHostsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewHostsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.UnmuteHost(ddCtx.ctx, hostName)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -121,7 +121,7 @@ func (s *hostTotalsGetStep) Execute(ctx context.Context, _ map[string]any, _ map
 	if !ok {
 		return &sdk.StepResult{Output: map[string]any{"error": "datadog client not found: " + s.moduleName}}, nil
 	}
-	api := datadogV1.NewHostsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewHostsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.GetHostTotals(ddCtx.ctx)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil

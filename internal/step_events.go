@@ -39,7 +39,7 @@ func (s *eventCreateStep) Execute(ctx context.Context, _ map[string]any, _ map[s
 	if host := resolveValue("host", current, config); host != "" {
 		body.SetHost(host)
 	}
-	api := datadogV1.NewEventsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewEventsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateEvent(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -74,7 +74,7 @@ func (s *eventGetStep) Execute(ctx context.Context, _ map[string]any, _ map[stri
 	if eventID == 0 {
 		return &sdk.StepResult{Output: map[string]any{"error": "event_id is required"}}, nil
 	}
-	api := datadogV1.NewEventsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewEventsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.GetEvent(ddCtx.ctx, eventID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -117,7 +117,7 @@ func (s *eventListStep) Execute(ctx context.Context, _ map[string]any, _ map[str
 	if tags := resolveValue("tags", current, config); tags != "" {
 		params.WithTags(tags)
 	}
-	api := datadogV1.NewEventsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewEventsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListEvents(ddCtx.ctx, start, end, *params)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -164,7 +164,7 @@ func (s *eventSearchStep) Execute(ctx context.Context, _ map[string]any, _ map[s
 	if sources := resolveValue("sources", current, config); sources != "" {
 		params.WithSources(sources)
 	}
-	api := datadogV1.NewEventsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewEventsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListEvents(ddCtx.ctx, start, end, *params)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil

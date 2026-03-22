@@ -27,7 +27,7 @@ func (s *tagsGetStep) Execute(ctx context.Context, _ map[string]any, _ map[strin
 	if hostName == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "host_name is required"}}, nil
 	}
-	api := datadogV1.NewTagsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewTagsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.GetHostTags(ddCtx.ctx, hostName)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -62,7 +62,7 @@ func (s *tagsUpdateStep) Execute(ctx context.Context, _ map[string]any, _ map[st
 		Host: &hostName,
 		Tags: tags,
 	}
-	api := datadogV1.NewTagsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewTagsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.UpdateHostTags(ddCtx.ctx, hostName, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -92,7 +92,7 @@ func (s *tagsDeleteStep) Execute(ctx context.Context, _ map[string]any, _ map[st
 	if hostName == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "host_name is required"}}, nil
 	}
-	api := datadogV1.NewTagsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewTagsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, err := api.DeleteHostTags(ddCtx.ctx, hostName)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -115,7 +115,7 @@ func (s *tagsListStep) Execute(ctx context.Context, _ map[string]any, _ map[stri
 	if !ok {
 		return &sdk.StepResult{Output: map[string]any{"error": "datadog client not found: " + s.moduleName}}, nil
 	}
-	api := datadogV1.NewTagsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewTagsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListHostTags(ddCtx.ctx)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil

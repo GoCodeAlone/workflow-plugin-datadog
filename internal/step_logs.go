@@ -43,7 +43,7 @@ func (s *logSubmitStep) Execute(ctx context.Context, _ map[string]any, _ map[str
 	if tags := resolveValue("tags", current, config); tags != "" {
 		entry.SetDdtags(tags)
 	}
-	api := datadogV2.NewLogsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewLogsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, _, err := api.SubmitLog(ddCtx.ctx, []datadogV2.HTTPLogItem{entry})
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -72,7 +72,7 @@ func (s *logSearchStep) Execute(ctx context.Context, _ map[string]any, _ map[str
 		Limit: datadog.PtrInt32(100),
 		Time:  datadogV1.LogsListRequestTime{},
 	}
-	api := datadogV1.NewLogsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewLogsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListLogs(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -112,7 +112,7 @@ func (s *logAggregateStep) Execute(ctx context.Context, _ map[string]any, _ map[
 			Query: &query,
 		},
 	}
-	api := datadogV2.NewLogsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewLogsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.AggregateLogs(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -171,7 +171,7 @@ func (s *logArchiveCreateStep) Execute(ctx context.Context, _ map[string]any, _ 
 			Type: "archives",
 		},
 	}
-	api := datadogV2.NewLogsArchivesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewLogsArchivesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateLogsArchive(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -198,7 +198,7 @@ func (s *logArchiveListStep) Execute(ctx context.Context, _ map[string]any, _ ma
 	if !ok {
 		return &sdk.StepResult{Output: map[string]any{"error": "datadog client not found: " + s.moduleName}}, nil
 	}
-	api := datadogV2.NewLogsArchivesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewLogsArchivesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListLogsArchives(ddCtx.ctx)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -233,7 +233,7 @@ func (s *logArchiveDeleteStep) Execute(ctx context.Context, _ map[string]any, _ 
 	if archiveID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "archive_id is required"}}, nil
 	}
-	api := datadogV2.NewLogsArchivesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewLogsArchivesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, err := api.DeleteLogsArchive(ddCtx.ctx, archiveID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -264,7 +264,7 @@ func (s *logPipelineCreateStep) Execute(ctx context.Context, _ map[string]any, _
 		Name:       pipelineName,
 		Processors: []datadogV1.LogsProcessor{},
 	}
-	api := datadogV1.NewLogsPipelinesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewLogsPipelinesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateLogsPipeline(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -290,7 +290,7 @@ func (s *logPipelineListStep) Execute(ctx context.Context, _ map[string]any, _ m
 	if !ok {
 		return &sdk.StepResult{Output: map[string]any{"error": "datadog client not found: " + s.moduleName}}, nil
 	}
-	api := datadogV1.NewLogsPipelinesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewLogsPipelinesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListLogsPipelines(ddCtx.ctx)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -324,7 +324,7 @@ func (s *logPipelineDeleteStep) Execute(ctx context.Context, _ map[string]any, _
 	if pipelineID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "pipeline_id is required"}}, nil
 	}
-	api := datadogV1.NewLogsPipelinesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewLogsPipelinesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, err := api.DeleteLogsPipeline(ddCtx.ctx, pipelineID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil

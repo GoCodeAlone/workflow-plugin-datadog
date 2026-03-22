@@ -38,7 +38,7 @@ func (s *userCreateStep) Execute(ctx context.Context, _ map[string]any, _ map[st
 	if name := resolveValue("name", current, config); name != "" {
 		body.Data.Attributes.SetName(name)
 	}
-	api := datadogV2.NewUsersApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewUsersApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateUser(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -69,7 +69,7 @@ func (s *userGetStep) Execute(ctx context.Context, _ map[string]any, _ map[strin
 	if userID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "user_id is required"}}, nil
 	}
-	api := datadogV2.NewUsersApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewUsersApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.GetUser(ddCtx.ctx, userID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -116,7 +116,7 @@ func (s *userUpdateStep) Execute(ctx context.Context, _ map[string]any, _ map[st
 	if name := resolveValue("name", current, config); name != "" {
 		body.Data.Attributes.SetName(name)
 	}
-	api := datadogV2.NewUsersApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewUsersApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.UpdateUser(ddCtx.ctx, userID, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -147,7 +147,7 @@ func (s *userDisableStep) Execute(ctx context.Context, _ map[string]any, _ map[s
 	if userID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "user_id is required"}}, nil
 	}
-	api := datadogV2.NewUsersApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewUsersApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, err := api.DisableUser(ddCtx.ctx, userID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -170,7 +170,7 @@ func (s *userListStep) Execute(ctx context.Context, _ map[string]any, _ map[stri
 	if !ok {
 		return &sdk.StepResult{Output: map[string]any{"error": "datadog client not found: " + s.moduleName}}, nil
 	}
-	api := datadogV2.NewUsersApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewUsersApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListUsers(ddCtx.ctx)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -223,7 +223,7 @@ func (s *userInviteStep) Execute(ctx context.Context, _ map[string]any, _ map[st
 			},
 		},
 	}
-	api := datadogV2.NewUsersApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewUsersApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.SendInvitations(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil

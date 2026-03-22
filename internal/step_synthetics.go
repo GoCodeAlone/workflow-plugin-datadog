@@ -50,7 +50,7 @@ func (s *syntheticsTestCreateStep) Execute(ctx context.Context, _ map[string]any
 	if tags := resolveStringSlice("tags", current, config); len(tags) > 0 {
 		body.SetTags(tags)
 	}
-	api := datadogV1.NewSyntheticsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewSyntheticsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateSyntheticsAPITest(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -80,7 +80,7 @@ func (s *syntheticsTestGetStep) Execute(ctx context.Context, _ map[string]any, _
 	if publicID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "public_id is required"}}, nil
 	}
-	api := datadogV1.NewSyntheticsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewSyntheticsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.GetTest(ddCtx.ctx, publicID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -131,7 +131,7 @@ func (s *syntheticsTestUpdateStep) Execute(ctx context.Context, _ map[string]any
 		},
 		Options: datadogV1.SyntheticsTestOptions{},
 	}
-	api := datadogV1.NewSyntheticsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewSyntheticsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.UpdateAPITest(ddCtx.ctx, publicID, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -167,7 +167,7 @@ func (s *syntheticsTestDeleteStep) Execute(ctx context.Context, _ map[string]any
 		return &sdk.StepResult{Output: map[string]any{"error": "public_id or public_ids is required"}}, nil
 	}
 	body := datadogV1.SyntheticsDeleteTestsPayload{PublicIds: publicIDs}
-	api := datadogV1.NewSyntheticsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewSyntheticsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.DeleteTests(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -194,7 +194,7 @@ func (s *syntheticsTestListStep) Execute(ctx context.Context, _ map[string]any, 
 	if !ok {
 		return &sdk.StepResult{Output: map[string]any{"error": "datadog client not found: " + s.moduleName}}, nil
 	}
-	api := datadogV1.NewSyntheticsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewSyntheticsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListTests(ddCtx.ctx)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -238,7 +238,7 @@ func (s *syntheticsTestTriggerStep) Execute(ctx context.Context, _ map[string]an
 		tests = append(tests, datadogV1.SyntheticsTriggerTest{PublicId: id})
 	}
 	body := datadogV1.SyntheticsTriggerBody{Tests: tests}
-	api := datadogV1.NewSyntheticsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewSyntheticsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.TriggerTests(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -273,7 +273,7 @@ func (s *syntheticsResultsGetStep) Execute(ctx context.Context, _ map[string]any
 	if publicID == "" || resultID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "public_id and result_id are required"}}, nil
 	}
-	api := datadogV1.NewSyntheticsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewSyntheticsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.GetAPITestResult(ddCtx.ctx, publicID, resultID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -313,7 +313,7 @@ func (s *syntheticsGlobalVarCreateStep) Execute(ctx context.Context, _ map[strin
 	if desc := resolveValue("description", current, config); desc != "" {
 		body.SetDescription(desc)
 	}
-	api := datadogV1.NewSyntheticsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewSyntheticsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateGlobalVariable(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -339,7 +339,7 @@ func (s *syntheticsGlobalVarListStep) Execute(ctx context.Context, _ map[string]
 	if !ok {
 		return &sdk.StepResult{Output: map[string]any{"error": "datadog client not found: " + s.moduleName}}, nil
 	}
-	api := datadogV1.NewSyntheticsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewSyntheticsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListGlobalVariables(ddCtx.ctx)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -373,7 +373,7 @@ func (s *syntheticsGlobalVarDeleteStep) Execute(ctx context.Context, _ map[strin
 	if varID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "variable_id is required"}}, nil
 	}
-	api := datadogV1.NewSyntheticsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewSyntheticsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, err := api.DeleteGlobalVariable(ddCtx.ctx, varID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil

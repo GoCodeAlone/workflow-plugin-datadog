@@ -46,7 +46,7 @@ func (s *sloCreateStep) Execute(ctx context.Context, _ map[string]any, _ map[str
 	if desc := resolveValue("description", current, config); desc != "" {
 		body.SetDescription(desc)
 	}
-	api := datadogV1.NewServiceLevelObjectivesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewServiceLevelObjectivesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateSLO(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -77,7 +77,7 @@ func (s *sloGetStep) Execute(ctx context.Context, _ map[string]any, _ map[string
 	if sloID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "slo_id is required"}}, nil
 	}
-	api := datadogV1.NewServiceLevelObjectivesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewServiceLevelObjectivesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.GetSLO(ddCtx.ctx, sloID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -118,7 +118,7 @@ func (s *sloUpdateStep) Execute(ctx context.Context, _ map[string]any, _ map[str
 			{Target: 99.9, Timeframe: datadogV1.SLOTIMEFRAME_THIRTY_DAYS},
 		},
 	}
-	api := datadogV1.NewServiceLevelObjectivesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewServiceLevelObjectivesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.UpdateSLO(ddCtx.ctx, sloID, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -149,7 +149,7 @@ func (s *sloDeleteStep) Execute(ctx context.Context, _ map[string]any, _ map[str
 	if sloID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "slo_id is required"}}, nil
 	}
-	api := datadogV1.NewServiceLevelObjectivesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewServiceLevelObjectivesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, _, err := api.DeleteSLO(ddCtx.ctx, sloID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -176,7 +176,7 @@ func (s *sloListStep) Execute(ctx context.Context, _ map[string]any, _ map[strin
 	if q := resolveValue("query", current, config); q != "" {
 		params.WithQuery(q)
 	}
-	api := datadogV1.NewServiceLevelObjectivesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewServiceLevelObjectivesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListSLOs(ddCtx.ctx, *params)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -210,7 +210,7 @@ func (s *sloSearchStep) Execute(ctx context.Context, _ map[string]any, _ map[str
 	if q := resolveValue("query", current, config); q != "" {
 		params.WithQuery(q)
 	}
-	api := datadogV1.NewServiceLevelObjectivesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewServiceLevelObjectivesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListSLOs(ddCtx.ctx, *params)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -252,7 +252,7 @@ func (s *sloHistoryGetStep) Execute(ctx context.Context, _ map[string]any, _ map
 	if toTs == 0 {
 		toTs = time.Now().Unix()
 	}
-	api := datadogV1.NewServiceLevelObjectivesApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewServiceLevelObjectivesApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.GetSLOHistory(ddCtx.ctx, sloID, fromTs, toTs)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil

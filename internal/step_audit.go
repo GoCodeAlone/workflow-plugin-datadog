@@ -35,7 +35,7 @@ func (s *auditLogSearchStep) Execute(ctx context.Context, _ map[string]any, _ ma
 		},
 	}
 	params := datadogV2.NewSearchAuditLogsOptionalParameters().WithBody(body)
-	api := datadogV2.NewAuditApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewAuditApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.SearchAuditLogs(ddCtx.ctx, *params)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -68,7 +68,7 @@ func (s *auditLogListStep) Execute(ctx context.Context, _ map[string]any, _ map[
 	if q := resolveValue("query", current, config); q != "" {
 		params.WithFilterQuery(q)
 	}
-	api := datadogV2.NewAuditApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewAuditApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListAuditLogs(ddCtx.ctx, *params)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil

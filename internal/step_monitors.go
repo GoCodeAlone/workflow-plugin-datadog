@@ -55,7 +55,7 @@ func (s *monitorCreateStep) Execute(ctx context.Context, _ map[string]any, _ map
 	if tags := resolveStringSlice("tags", current, config); len(tags) > 0 {
 		body.SetTags(tags)
 	}
-	api := datadogV1.NewMonitorsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewMonitorsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateMonitor(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -85,7 +85,7 @@ func (s *monitorGetStep) Execute(ctx context.Context, _ map[string]any, _ map[st
 	if monitorID == 0 {
 		return &sdk.StepResult{Output: map[string]any{"error": "monitor_id is required"}}, nil
 	}
-	api := datadogV1.NewMonitorsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewMonitorsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.GetMonitor(ddCtx.ctx, monitorID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -127,7 +127,7 @@ func (s *monitorUpdateStep) Execute(ctx context.Context, _ map[string]any, _ map
 	if msg := resolveValue("message", current, config); msg != "" {
 		body.SetMessage(msg)
 	}
-	api := datadogV1.NewMonitorsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewMonitorsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.UpdateMonitor(ddCtx.ctx, monitorID, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -157,7 +157,7 @@ func (s *monitorDeleteStep) Execute(ctx context.Context, _ map[string]any, _ map
 	if monitorID == 0 {
 		return &sdk.StepResult{Output: map[string]any{"error": "monitor_id is required"}}, nil
 	}
-	api := datadogV1.NewMonitorsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewMonitorsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.DeleteMonitor(ddCtx.ctx, monitorID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -187,7 +187,7 @@ func (s *monitorListStep) Execute(ctx context.Context, _ map[string]any, _ map[s
 	if name := resolveValue("name", current, config); name != "" {
 		params.WithName(name)
 	}
-	api := datadogV1.NewMonitorsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewMonitorsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListMonitors(ddCtx.ctx, *params)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -221,7 +221,7 @@ func (s *monitorSearchStep) Execute(ctx context.Context, _ map[string]any, _ map
 	if q := resolveValue("query", current, config); q != "" {
 		params.WithQuery(q)
 	}
-	api := datadogV1.NewMonitorsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewMonitorsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.SearchMonitors(ddCtx.ctx, *params)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -259,7 +259,7 @@ func (s *monitorValidateStep) Execute(ctx context.Context, _ map[string]any, _ m
 		Type:  datadogV1.MONITORTYPE_METRIC_ALERT,
 		Query: query,
 	}
-	api := datadogV1.NewMonitorsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewMonitorsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, _, err := api.ValidateMonitor(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"valid": false, "error": err.Error()}}, nil

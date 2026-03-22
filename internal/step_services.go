@@ -47,7 +47,7 @@ func (s *serviceDefinitionUpsertStep) Execute(ctx context.Context, _ map[string]
 	if team := resolveValue("team", current, config); team != "" {
 		body.ServiceDefinitionV2Dot2.SetTeam(team)
 	}
-	api := datadogV2.NewServiceDefinitionApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewServiceDefinitionApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateOrUpdateServiceDefinitions(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -75,7 +75,7 @@ func (s *serviceDefinitionGetStep) Execute(ctx context.Context, _ map[string]any
 	if serviceName == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "service_name is required"}}, nil
 	}
-	api := datadogV2.NewServiceDefinitionApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewServiceDefinitionApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.GetServiceDefinition(ddCtx.ctx, serviceName)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -103,7 +103,7 @@ func (s *serviceDefinitionDeleteStep) Execute(ctx context.Context, _ map[string]
 	if serviceName == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "service_name is required"}}, nil
 	}
-	api := datadogV2.NewServiceDefinitionApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewServiceDefinitionApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, err := api.DeleteServiceDefinition(ddCtx.ctx, serviceName)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -126,7 +126,7 @@ func (s *serviceDefinitionListStep) Execute(ctx context.Context, _ map[string]an
 	if !ok {
 		return &sdk.StepResult{Output: map[string]any{"error": "datadog client not found: " + s.moduleName}}, nil
 	}
-	api := datadogV2.NewServiceDefinitionApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewServiceDefinitionApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListServiceDefinitions(ddCtx.ctx)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil

@@ -51,7 +51,7 @@ func (s *securityRuleCreateStep) Execute(ctx context.Context, _ map[string]any, 
 			Queries: []datadogV2.SecurityMonitoringStandardRuleQuery{},
 		},
 	}
-	api := datadogV2.NewSecurityMonitoringApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewSecurityMonitoringApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateSecurityMonitoringRule(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -82,7 +82,7 @@ func (s *securityRuleGetStep) Execute(ctx context.Context, _ map[string]any, _ m
 	if ruleID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "rule_id is required"}}, nil
 	}
-	api := datadogV2.NewSecurityMonitoringApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewSecurityMonitoringApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.GetSecurityMonitoringRule(ddCtx.ctx, ruleID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -120,7 +120,7 @@ func (s *securityRuleUpdateStep) Execute(ctx context.Context, _ map[string]any, 
 	if msg := resolveValue("message", current, config); msg != "" {
 		body.SetMessage(msg)
 	}
-	api := datadogV2.NewSecurityMonitoringApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewSecurityMonitoringApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.UpdateSecurityMonitoringRule(ddCtx.ctx, ruleID, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -151,7 +151,7 @@ func (s *securityRuleDeleteStep) Execute(ctx context.Context, _ map[string]any, 
 	if ruleID == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "rule_id is required"}}, nil
 	}
-	api := datadogV2.NewSecurityMonitoringApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewSecurityMonitoringApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, err := api.DeleteSecurityMonitoringRule(ddCtx.ctx, ruleID)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -174,7 +174,7 @@ func (s *securityRuleListStep) Execute(ctx context.Context, _ map[string]any, _ 
 	if !ok {
 		return &sdk.StepResult{Output: map[string]any{"error": "datadog client not found: " + s.moduleName}}, nil
 	}
-	api := datadogV2.NewSecurityMonitoringApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewSecurityMonitoringApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListSecurityMonitoringRules(ddCtx.ctx)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -213,7 +213,7 @@ func (s *securitySignalListStep) Execute(ctx context.Context, _ map[string]any, 
 			Query: &query,
 		},
 	}
-	api := datadogV2.NewSecurityMonitoringApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewSecurityMonitoringApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.SearchSecurityMonitoringSignals(ddCtx.ctx, *datadogV2.NewSearchSecurityMonitoringSignalsOptionalParameters().WithBody(body))
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -259,7 +259,7 @@ func (s *securitySignalStateUpdateStep) Execute(ctx context.Context, _ map[strin
 			},
 		},
 	}
-	api := datadogV2.NewSecurityMonitoringApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewSecurityMonitoringApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, _, err := api.EditSecurityMonitoringSignalState(ddCtx.ctx, signalID, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil

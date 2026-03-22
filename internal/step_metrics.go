@@ -57,7 +57,7 @@ func (s *metricSubmitStep) Execute(ctx context.Context, _ map[string]any, _ map[
 		series.Tags = tags
 	}
 	body := datadogV2.MetricPayload{Series: []datadogV2.MetricSeries{series}}
-	api := datadogV2.NewMetricsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewMetricsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, _, err := api.SubmitMetrics(ddCtx.ctx, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -92,7 +92,7 @@ func (s *metricQueryStep) Execute(ctx context.Context, _ map[string]any, _ map[s
 	if toTs == 0 {
 		toTs = time.Now().Unix()
 	}
-	api := datadogV1.NewMetricsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewMetricsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.QueryMetrics(ddCtx.ctx, fromTs, toTs, query)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -151,7 +151,7 @@ func (s *metricQueryScalarStep) Execute(ctx context.Context, _ map[string]any, _
 		},
 		Type: datadogV2.SCALARFORMULAREQUESTTYPE_SCALAR_REQUEST,
 	}
-	api := datadogV2.NewMetricsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewMetricsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.QueryScalarData(ddCtx.ctx, datadogV2.ScalarFormulaQueryRequest{Data: scalarReq})
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -179,7 +179,7 @@ func (s *metricMetadataGetStep) Execute(ctx context.Context, _ map[string]any, _
 	if metricName == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "metric is required"}}, nil
 	}
-	api := datadogV1.NewMetricsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewMetricsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	meta, _, err := api.GetMetricMetadata(ddCtx.ctx, metricName)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -221,7 +221,7 @@ func (s *metricMetadataUpdateStep) Execute(ctx context.Context, _ map[string]any
 	if t := resolveValue("type", current, config); t != "" {
 		body.SetType(t)
 	}
-	api := datadogV1.NewMetricsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewMetricsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	meta, _, err := api.UpdateMetricMetadata(ddCtx.ctx, metricName, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -256,7 +256,7 @@ func (s *metricListActiveStep) Execute(ctx context.Context, _ map[string]any, _ 
 	if host := resolveValue("host", current, config); host != "" {
 		params.WithHost(host)
 	}
-	api := datadogV1.NewMetricsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV1.NewMetricsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListActiveMetrics(ddCtx.ctx, from, *params)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -299,7 +299,7 @@ func (s *metricTagConfigCreateStep) Execute(ctx context.Context, _ map[string]an
 			},
 		},
 	}
-	api := datadogV2.NewMetricsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewMetricsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.CreateTagConfiguration(ddCtx.ctx, metricName, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -337,7 +337,7 @@ func (s *metricTagConfigUpdateStep) Execute(ctx context.Context, _ map[string]an
 			},
 		},
 	}
-	api := datadogV2.NewMetricsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewMetricsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.UpdateTagConfiguration(ddCtx.ctx, metricName, body)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -365,7 +365,7 @@ func (s *metricTagConfigDeleteStep) Execute(ctx context.Context, _ map[string]an
 	if metricName == "" {
 		return &sdk.StepResult{Output: map[string]any{"error": "metric is required"}}, nil
 	}
-	api := datadogV2.NewMetricsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewMetricsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	_, err := api.DeleteTagConfiguration(ddCtx.ctx, metricName)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
@@ -388,7 +388,7 @@ func (s *metricTagConfigListStep) Execute(ctx context.Context, _ map[string]any,
 	if !ok {
 		return &sdk.StepResult{Output: map[string]any{"error": "datadog client not found: " + s.moduleName}}, nil
 	}
-	api := datadogV2.NewMetricsApi(datadog.NewAPIClient(datadog.NewConfiguration()))
+	api := datadogV2.NewMetricsApi(datadog.NewAPIClient(ddCtx.newConfig()))
 	resp, _, err := api.ListTagConfigurations(ddCtx.ctx)
 	if err != nil {
 		return &sdk.StepResult{Output: map[string]any{"error": err.Error()}}, nil
