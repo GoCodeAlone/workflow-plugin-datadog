@@ -1,51 +1,5226 @@
 {
-    "name": "workflow-plugin-datadog",
-    "version": "0.1.0",
-    "description": "Datadog monitoring and observability plugin",
-    "author": "GoCodeAlone",
-    "license": "MIT",
-    "type": "external",
-    "tier": "community",
-    "private": false,
-    "minEngineVersion": "0.3.30",
-    "keywords": ["datadog", "monitoring", "observability", "metrics", "logs", "apm"],
-    "homepage": "https://github.com/GoCodeAlone/workflow-plugin-datadog",
-    "repository": "https://github.com/GoCodeAlone/workflow-plugin-datadog",
-    "capabilities": {
-        "configProvider": false,
-        "moduleTypes": ["datadog.provider"],
-        "stepTypes": [
-            "step.datadog_metric_submit", "step.datadog_metric_query", "step.datadog_metric_query_scalar",
-            "step.datadog_metric_metadata_get", "step.datadog_metric_metadata_update", "step.datadog_metric_list_active",
-            "step.datadog_metric_tag_config_create", "step.datadog_metric_tag_config_update", "step.datadog_metric_tag_config_delete", "step.datadog_metric_tag_config_list",
-            "step.datadog_event_create", "step.datadog_event_get", "step.datadog_event_list", "step.datadog_event_search",
-            "step.datadog_monitor_create", "step.datadog_monitor_get", "step.datadog_monitor_update", "step.datadog_monitor_delete", "step.datadog_monitor_list", "step.datadog_monitor_search", "step.datadog_monitor_validate",
-            "step.datadog_dashboard_create", "step.datadog_dashboard_get", "step.datadog_dashboard_update", "step.datadog_dashboard_delete", "step.datadog_dashboard_list",
-            "step.datadog_log_submit", "step.datadog_log_search", "step.datadog_log_aggregate",
-            "step.datadog_log_archive_create", "step.datadog_log_archive_list", "step.datadog_log_archive_delete",
-            "step.datadog_log_pipeline_create", "step.datadog_log_pipeline_list", "step.datadog_log_pipeline_delete",
-            "step.datadog_synthetics_test_create", "step.datadog_synthetics_test_get", "step.datadog_synthetics_test_update", "step.datadog_synthetics_test_delete", "step.datadog_synthetics_test_list",
-            "step.datadog_synthetics_test_trigger", "step.datadog_synthetics_results_get",
-            "step.datadog_synthetics_global_var_create", "step.datadog_synthetics_global_var_list", "step.datadog_synthetics_global_var_delete",
-            "step.datadog_slo_create", "step.datadog_slo_get", "step.datadog_slo_update", "step.datadog_slo_delete", "step.datadog_slo_list", "step.datadog_slo_search", "step.datadog_slo_history_get",
-            "step.datadog_downtime_create", "step.datadog_downtime_get", "step.datadog_downtime_update", "step.datadog_downtime_cancel", "step.datadog_downtime_list",
-            "step.datadog_incident_create", "step.datadog_incident_get", "step.datadog_incident_update", "step.datadog_incident_delete", "step.datadog_incident_list",
-            "step.datadog_incident_todo_create", "step.datadog_incident_todo_update", "step.datadog_incident_todo_delete",
-            "step.datadog_security_rule_create", "step.datadog_security_rule_get", "step.datadog_security_rule_update", "step.datadog_security_rule_delete", "step.datadog_security_rule_list",
-            "step.datadog_security_signal_list", "step.datadog_security_signal_state_update",
-            "step.datadog_user_create", "step.datadog_user_get", "step.datadog_user_update", "step.datadog_user_disable", "step.datadog_user_list", "step.datadog_user_invite",
-            "step.datadog_role_create", "step.datadog_role_get", "step.datadog_role_update", "step.datadog_role_delete", "step.datadog_role_list", "step.datadog_role_permission_add", "step.datadog_role_permission_remove",
-            "step.datadog_team_create", "step.datadog_team_get", "step.datadog_team_update", "step.datadog_team_delete", "step.datadog_team_list", "step.datadog_team_member_add", "step.datadog_team_member_remove",
-            "step.datadog_api_key_create", "step.datadog_api_key_get", "step.datadog_api_key_update", "step.datadog_api_key_delete", "step.datadog_api_key_list",
-            "step.datadog_app_key_create", "step.datadog_app_key_list", "step.datadog_app_key_delete",
-            "step.datadog_notebook_create", "step.datadog_notebook_get", "step.datadog_notebook_update", "step.datadog_notebook_delete", "step.datadog_notebook_list",
-            "step.datadog_host_list", "step.datadog_host_mute", "step.datadog_host_unmute", "step.datadog_host_totals_get",
-            "step.datadog_tags_get", "step.datadog_tags_update", "step.datadog_tags_delete", "step.datadog_tags_list",
-            "step.datadog_service_definition_upsert", "step.datadog_service_definition_get", "step.datadog_service_definition_delete", "step.datadog_service_definition_list",
-            "step.datadog_apm_retention_filter_create", "step.datadog_apm_retention_filter_update", "step.datadog_apm_retention_filter_delete", "step.datadog_apm_retention_filter_list",
-            "step.datadog_span_search", "step.datadog_span_aggregate",
-            "step.datadog_audit_log_search", "step.datadog_audit_log_list"
-        ],
-        "triggerTypes": []
+  "name": "workflow-plugin-datadog",
+  "version": "0.1.0",
+  "description": "Datadog monitoring and observability plugin",
+  "author": "GoCodeAlone",
+  "license": "MIT",
+  "type": "external",
+  "tier": "community",
+  "private": false,
+  "minEngineVersion": "0.3.30",
+  "keywords": [
+    "datadog",
+    "monitoring",
+    "observability",
+    "metrics",
+    "logs",
+    "apm"
+  ],
+  "homepage": "https://github.com/GoCodeAlone/workflow-plugin-datadog",
+  "repository": "https://github.com/GoCodeAlone/workflow-plugin-datadog",
+  "moduleTypes": [
+    "datadog.provider"
+  ],
+  "stepTypes": [
+    "step.datadog_metric_submit",
+    "step.datadog_metric_query",
+    "step.datadog_metric_query_scalar",
+    "step.datadog_metric_metadata_get",
+    "step.datadog_metric_metadata_update",
+    "step.datadog_metric_list_active",
+    "step.datadog_metric_tag_config_create",
+    "step.datadog_metric_tag_config_update",
+    "step.datadog_metric_tag_config_delete",
+    "step.datadog_metric_tag_config_list",
+    "step.datadog_event_create",
+    "step.datadog_event_get",
+    "step.datadog_event_list",
+    "step.datadog_event_search",
+    "step.datadog_monitor_create",
+    "step.datadog_monitor_get",
+    "step.datadog_monitor_update",
+    "step.datadog_monitor_delete",
+    "step.datadog_monitor_list",
+    "step.datadog_monitor_search",
+    "step.datadog_monitor_validate",
+    "step.datadog_dashboard_create",
+    "step.datadog_dashboard_get",
+    "step.datadog_dashboard_update",
+    "step.datadog_dashboard_delete",
+    "step.datadog_dashboard_list",
+    "step.datadog_log_submit",
+    "step.datadog_log_search",
+    "step.datadog_log_aggregate",
+    "step.datadog_log_archive_create",
+    "step.datadog_log_archive_list",
+    "step.datadog_log_archive_delete",
+    "step.datadog_log_pipeline_create",
+    "step.datadog_log_pipeline_list",
+    "step.datadog_log_pipeline_delete",
+    "step.datadog_synthetics_test_create",
+    "step.datadog_synthetics_test_get",
+    "step.datadog_synthetics_test_update",
+    "step.datadog_synthetics_test_delete",
+    "step.datadog_synthetics_test_list",
+    "step.datadog_synthetics_test_trigger",
+    "step.datadog_synthetics_results_get",
+    "step.datadog_synthetics_global_var_create",
+    "step.datadog_synthetics_global_var_list",
+    "step.datadog_synthetics_global_var_delete",
+    "step.datadog_slo_create",
+    "step.datadog_slo_get",
+    "step.datadog_slo_update",
+    "step.datadog_slo_delete",
+    "step.datadog_slo_list",
+    "step.datadog_slo_search",
+    "step.datadog_slo_history_get",
+    "step.datadog_downtime_create",
+    "step.datadog_downtime_get",
+    "step.datadog_downtime_update",
+    "step.datadog_downtime_cancel",
+    "step.datadog_downtime_list",
+    "step.datadog_incident_create",
+    "step.datadog_incident_get",
+    "step.datadog_incident_update",
+    "step.datadog_incident_delete",
+    "step.datadog_incident_list",
+    "step.datadog_incident_todo_create",
+    "step.datadog_incident_todo_update",
+    "step.datadog_incident_todo_delete",
+    "step.datadog_security_rule_create",
+    "step.datadog_security_rule_get",
+    "step.datadog_security_rule_update",
+    "step.datadog_security_rule_delete",
+    "step.datadog_security_rule_list",
+    "step.datadog_security_signal_list",
+    "step.datadog_security_signal_state_update",
+    "step.datadog_user_create",
+    "step.datadog_user_get",
+    "step.datadog_user_update",
+    "step.datadog_user_disable",
+    "step.datadog_user_list",
+    "step.datadog_user_invite",
+    "step.datadog_role_create",
+    "step.datadog_role_get",
+    "step.datadog_role_update",
+    "step.datadog_role_delete",
+    "step.datadog_role_list",
+    "step.datadog_role_permission_add",
+    "step.datadog_role_permission_remove",
+    "step.datadog_team_create",
+    "step.datadog_team_get",
+    "step.datadog_team_update",
+    "step.datadog_team_delete",
+    "step.datadog_team_list",
+    "step.datadog_team_member_add",
+    "step.datadog_team_member_remove",
+    "step.datadog_api_key_create",
+    "step.datadog_api_key_get",
+    "step.datadog_api_key_update",
+    "step.datadog_api_key_delete",
+    "step.datadog_api_key_list",
+    "step.datadog_app_key_create",
+    "step.datadog_app_key_list",
+    "step.datadog_app_key_delete",
+    "step.datadog_notebook_create",
+    "step.datadog_notebook_get",
+    "step.datadog_notebook_update",
+    "step.datadog_notebook_delete",
+    "step.datadog_notebook_list",
+    "step.datadog_host_list",
+    "step.datadog_host_mute",
+    "step.datadog_host_unmute",
+    "step.datadog_host_totals_get",
+    "step.datadog_tags_get",
+    "step.datadog_tags_update",
+    "step.datadog_tags_delete",
+    "step.datadog_tags_list",
+    "step.datadog_service_definition_upsert",
+    "step.datadog_service_definition_get",
+    "step.datadog_service_definition_delete",
+    "step.datadog_service_definition_list",
+    "step.datadog_apm_retention_filter_create",
+    "step.datadog_apm_retention_filter_update",
+    "step.datadog_apm_retention_filter_delete",
+    "step.datadog_apm_retention_filter_list",
+    "step.datadog_span_search",
+    "step.datadog_span_aggregate",
+    "step.datadog_audit_log_search",
+    "step.datadog_audit_log_list"
+  ],
+  "triggerTypes": [],
+  "stepSchemas": [
+    {
+      "stepType": "step.datadog_metric_submit",
+      "description": "Submit a metric to Datadog",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "metric",
+          "type": "string",
+          "required": "",
+          "description": "Metric name"
+        },
+        {
+          "name": "value",
+          "type": "number",
+          "required": false,
+          "description": "Metric value"
+        },
+        {
+          "name": "type",
+          "type": "select",
+          "required": false,
+          "options": [
+            "count",
+            "rate",
+            "gauge"
+          ],
+          "description": "Metric type"
+        },
+        {
+          "name": "tags",
+          "type": "array",
+          "required": false,
+          "description": "Tags"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "submitted",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "metric",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_metric_query",
+      "description": "Query metrics from Datadog",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "required": true,
+          "description": "Metrics query"
+        },
+        {
+          "name": "from",
+          "type": "number",
+          "required": false,
+          "description": "Start time (epoch seconds)"
+        },
+        {
+          "name": "to",
+          "type": "number",
+          "required": false,
+          "description": "End time (epoch seconds)"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "series",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_metric_query_scalar",
+      "description": "Query scalar metrics from Datadog",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "required": true,
+          "description": "Scalar query"
+        },
+        {
+          "name": "from",
+          "type": "number",
+          "required": false,
+          "description": "Start time"
+        },
+        {
+          "name": "to",
+          "type": "number",
+          "required": false,
+          "description": "End time"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "queried",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_metric_metadata_get",
+      "description": "Get metric metadata",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "metric",
+          "type": "string",
+          "required": true,
+          "description": "Metric name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "type",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "unit",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "short_name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_metric_metadata_update",
+      "description": "Update metric metadata",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "metric",
+          "type": "string",
+          "required": true,
+          "description": "Metric name"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "description": "Description"
+        },
+        {
+          "name": "unit",
+          "type": "string",
+          "required": false,
+          "description": "Unit"
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "description": "Type"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "type",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "unit",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_metric_list_active",
+      "description": "List active metrics",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "from",
+          "type": "number",
+          "required": false,
+          "description": "Start time (epoch seconds)"
+        },
+        {
+          "name": "host",
+          "type": "string",
+          "required": false,
+          "description": "Filter by host"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "metrics",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_metric_tag_config_create",
+      "description": "Create metric tag configuration",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "metric",
+          "type": "string",
+          "required": true,
+          "description": "Metric name"
+        },
+        {
+          "name": "tags",
+          "type": "array",
+          "required": false,
+          "description": "Tags"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "created",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "metric",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_metric_tag_config_update",
+      "description": "Update metric tag configuration",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "metric",
+          "type": "string",
+          "required": true,
+          "description": "Metric name"
+        },
+        {
+          "name": "tags",
+          "type": "array",
+          "required": false,
+          "description": "Tags"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "updated",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "metric",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_metric_tag_config_delete",
+      "description": "Delete metric tag configuration",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "metric",
+          "type": "string",
+          "required": true,
+          "description": "Metric name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "metric",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_metric_tag_config_list",
+      "description": "List metric tag configurations",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "configurations",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_event_create",
+      "description": "Create a Datadog event",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "description": "Event title"
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "required": false,
+          "description": "Event text"
+        },
+        {
+          "name": "tags",
+          "type": "array",
+          "required": false,
+          "description": "Tags"
+        },
+        {
+          "name": "host",
+          "type": "string",
+          "required": false,
+          "description": "Host name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_event_get",
+      "description": "Get a Datadog event",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "event_id",
+          "type": "number",
+          "required": true,
+          "description": "Event ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "found",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "id",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "host",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_event_list",
+      "description": "List Datadog events",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "start",
+          "type": "number",
+          "required": false,
+          "description": "Start time"
+        },
+        {
+          "name": "end",
+          "type": "number",
+          "required": false,
+          "description": "End time"
+        },
+        {
+          "name": "tags",
+          "type": "string",
+          "required": false,
+          "description": "Filter by tags"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "events",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_event_search",
+      "description": "Search Datadog events",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "start",
+          "type": "number",
+          "required": false,
+          "description": "Start time"
+        },
+        {
+          "name": "end",
+          "type": "number",
+          "required": false,
+          "description": "End time"
+        },
+        {
+          "name": "tags",
+          "type": "string",
+          "required": false,
+          "description": "Filter by tags"
+        },
+        {
+          "name": "sources",
+          "type": "string",
+          "required": false,
+          "description": "Filter by sources"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "events",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_monitor_create",
+      "description": "Create a Datadog monitor",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "description": "Monitor name"
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "required": true,
+          "description": "Monitor query"
+        },
+        {
+          "name": "type",
+          "type": "select",
+          "required": false,
+          "options": [
+            "metric alert",
+            "service check",
+            "event alert",
+            "log alert",
+            "query alert"
+          ],
+          "description": "Monitor type"
+        },
+        {
+          "name": "message",
+          "type": "string",
+          "required": false,
+          "description": "Notification message"
+        },
+        {
+          "name": "tags",
+          "type": "array",
+          "required": false,
+          "description": "Tags"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_monitor_get",
+      "description": "Get a Datadog monitor",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "monitor_id",
+          "type": "number",
+          "required": true,
+          "description": "Monitor ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "message",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_monitor_update",
+      "description": "Update a Datadog monitor",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "monitor_id",
+          "type": "number",
+          "required": true,
+          "description": "Monitor ID"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "description": "Monitor name"
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "required": false,
+          "description": "Monitor query"
+        },
+        {
+          "name": "message",
+          "type": "string",
+          "required": false,
+          "description": "Notification message"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_monitor_delete",
+      "description": "Delete a Datadog monitor",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "monitor_id",
+          "type": "number",
+          "required": true,
+          "description": "Monitor ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "id",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_monitor_list",
+      "description": "List Datadog monitors",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "tags",
+          "type": "string",
+          "required": false,
+          "description": "Filter by tags"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "description": "Filter by name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "monitors",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_monitor_search",
+      "description": "Search Datadog monitors",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "required": false,
+          "description": "Search query"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "monitors",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_monitor_validate",
+      "description": "Validate a Datadog monitor query",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "required": true,
+          "description": "Monitor query"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "valid",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_dashboard_create",
+      "description": "Create a Datadog dashboard",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "description": "Dashboard title"
+        },
+        {
+          "name": "layout_type",
+          "type": "select",
+          "required": false,
+          "options": [
+            "ordered",
+            "free"
+          ],
+          "description": "Layout type"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "description": "Description"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "url",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_dashboard_get",
+      "description": "Get a Datadog dashboard",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "dashboard_id",
+          "type": "string",
+          "required": true,
+          "description": "Dashboard ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "url",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_dashboard_update",
+      "description": "Update a Datadog dashboard",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "dashboard_id",
+          "type": "string",
+          "required": true,
+          "description": "Dashboard ID"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "description": "Dashboard title"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_dashboard_delete",
+      "description": "Delete a Datadog dashboard",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "dashboard_id",
+          "type": "string",
+          "required": true,
+          "description": "Dashboard ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_dashboard_list",
+      "description": "List Datadog dashboards",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "dashboards",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_log_submit",
+      "description": "Submit a log to Datadog",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "message",
+          "type": "string",
+          "required": true,
+          "description": "Log message"
+        },
+        {
+          "name": "service",
+          "type": "string",
+          "required": false,
+          "description": "Service name"
+        },
+        {
+          "name": "source",
+          "type": "string",
+          "required": false,
+          "description": "Log source"
+        },
+        {
+          "name": "host",
+          "type": "string",
+          "required": false,
+          "description": "Host name"
+        },
+        {
+          "name": "tags",
+          "type": "string",
+          "required": false,
+          "description": "Tags"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "submitted",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_log_search",
+      "description": "Search Datadog logs",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "required": false,
+          "description": "Search query"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "logs",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_log_aggregate",
+      "description": "Aggregate Datadog logs",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "required": false,
+          "description": "Aggregation query"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "buckets",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_log_archive_create",
+      "description": "Create a log archive",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "description": "Archive name"
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "required": false,
+          "description": "Filter query"
+        },
+        {
+          "name": "bucket",
+          "type": "string",
+          "required": false,
+          "description": "S3 bucket"
+        },
+        {
+          "name": "path",
+          "type": "string",
+          "required": false,
+          "description": "Archive path"
+        },
+        {
+          "name": "role_arn",
+          "type": "string",
+          "required": false,
+          "description": "IAM role ARN"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_log_archive_list",
+      "description": "List log archives",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "archives",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_log_archive_delete",
+      "description": "Delete a log archive",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "archive_id",
+          "type": "string",
+          "required": true,
+          "description": "Archive ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_log_pipeline_create",
+      "description": "Create a log pipeline",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "description": "Pipeline name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_log_pipeline_list",
+      "description": "List log pipelines",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "pipelines",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_log_pipeline_delete",
+      "description": "Delete a log pipeline",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "pipeline_id",
+          "type": "string",
+          "required": true,
+          "description": "Pipeline ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_synthetics_test_create",
+      "description": "Create a synthetic test",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "description": "Test name"
+        },
+        {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "description": "Test URL"
+        },
+        {
+          "name": "locations",
+          "type": "array",
+          "required": false,
+          "description": "Test locations"
+        },
+        {
+          "name": "tags",
+          "type": "array",
+          "required": false,
+          "description": "Tags"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "public_id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_synthetics_test_get",
+      "description": "Get a synthetic test",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "public_id",
+          "type": "string",
+          "required": true,
+          "description": "Test public ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "public_id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_synthetics_test_update",
+      "description": "Update a synthetic test",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "public_id",
+          "type": "string",
+          "required": true,
+          "description": "Test public ID"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "description": "Test name"
+        },
+        {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "description": "Test URL"
+        },
+        {
+          "name": "locations",
+          "type": "array",
+          "required": false,
+          "description": "Test locations"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "public_id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_synthetics_test_delete",
+      "description": "Delete synthetic tests",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "public_ids",
+          "type": "array",
+          "required": false,
+          "description": "List of public IDs"
+        },
+        {
+          "name": "public_id",
+          "type": "string",
+          "required": false,
+          "description": "Single public ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "deleted",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_synthetics_test_list",
+      "description": "List synthetic tests",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "tests",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_synthetics_test_trigger",
+      "description": "Trigger synthetic tests",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "public_ids",
+          "type": "array",
+          "required": false,
+          "description": "List of public IDs"
+        },
+        {
+          "name": "public_id",
+          "type": "string",
+          "required": false,
+          "description": "Single public ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "results",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_synthetics_results_get",
+      "description": "Get synthetic test results",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "public_id",
+          "type": "string",
+          "required": true,
+          "description": "Test public ID"
+        },
+        {
+          "name": "result_id",
+          "type": "string",
+          "required": true,
+          "description": "Result ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "result_id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "status",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_synthetics_global_var_create",
+      "description": "Create a synthetic global variable",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "description": "Variable name"
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": false,
+          "description": "Variable value"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "description": "Description"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_synthetics_global_var_list",
+      "description": "List synthetic global variables",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "variables",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_synthetics_global_var_delete",
+      "description": "Delete a synthetic global variable",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "variable_id",
+          "type": "string",
+          "required": true,
+          "description": "Variable ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_slo_create",
+      "description": "Create a Service Level Objective",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "description": "SLO name"
+        },
+        {
+          "name": "type",
+          "type": "select",
+          "required": false,
+          "options": [
+            "metric",
+            "monitor"
+          ],
+          "description": "SLO type"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "description": "Description"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_slo_get",
+      "description": "Get a Service Level Objective",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "slo_id",
+          "type": "string",
+          "required": true,
+          "description": "SLO ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "found",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_slo_update",
+      "description": "Update a Service Level Objective",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "slo_id",
+          "type": "string",
+          "required": true,
+          "description": "SLO ID"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "description": "SLO name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "updated",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_slo_delete",
+      "description": "Delete a Service Level Objective",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "slo_id",
+          "type": "string",
+          "required": true,
+          "description": "SLO ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_slo_list",
+      "description": "List Service Level Objectives",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "required": false,
+          "description": "Filter query"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "slos",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_slo_search",
+      "description": "Search Service Level Objectives",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "required": false,
+          "description": "Search query"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "slos",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_slo_history_get",
+      "description": "Get SLO history",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "slo_id",
+          "type": "string",
+          "required": true,
+          "description": "SLO ID"
+        },
+        {
+          "name": "from",
+          "type": "number",
+          "required": false,
+          "description": "Start time (epoch seconds)"
+        },
+        {
+          "name": "to",
+          "type": "number",
+          "required": false,
+          "description": "End time (epoch seconds)"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "slo_id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "from",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "to",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_downtime_create",
+      "description": "Create a Datadog downtime",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "scope",
+          "type": "string",
+          "required": false,
+          "description": "Downtime scope"
+        },
+        {
+          "name": "start",
+          "type": "number",
+          "required": false,
+          "description": "Start time (epoch seconds)"
+        },
+        {
+          "name": "end",
+          "type": "number",
+          "required": false,
+          "description": "End time (epoch seconds)"
+        },
+        {
+          "name": "message",
+          "type": "string",
+          "required": false,
+          "description": "Message"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "scope",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "message",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_downtime_get",
+      "description": "Get a Datadog downtime",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "downtime_id",
+          "type": "number",
+          "required": true,
+          "description": "Downtime ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "scope",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "message",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_downtime_update",
+      "description": "Update a Datadog downtime",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "downtime_id",
+          "type": "number",
+          "required": true,
+          "description": "Downtime ID"
+        },
+        {
+          "name": "message",
+          "type": "string",
+          "required": false,
+          "description": "Message"
+        },
+        {
+          "name": "scope",
+          "type": "string",
+          "required": false,
+          "description": "Scope"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "updated",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_downtime_cancel",
+      "description": "Cancel a Datadog downtime",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "downtime_id",
+          "type": "number",
+          "required": true,
+          "description": "Downtime ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "cancelled",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "id",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_downtime_list",
+      "description": "List Datadog downtimes",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "current_only",
+          "type": "boolean",
+          "required": false,
+          "description": "Return only current downtimes"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "downtimes",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_incident_create",
+      "description": "Create a Datadog incident",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "description": "Incident title"
+        },
+        {
+          "name": "customer_impacted",
+          "type": "boolean",
+          "required": false,
+          "description": "Customer impacted"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_incident_get",
+      "description": "Get a Datadog incident",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "incident_id",
+          "type": "string",
+          "required": true,
+          "description": "Incident ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_incident_update",
+      "description": "Update a Datadog incident",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "incident_id",
+          "type": "string",
+          "required": true,
+          "description": "Incident ID"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "description": "Incident title"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "updated",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_incident_delete",
+      "description": "Delete a Datadog incident",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "incident_id",
+          "type": "string",
+          "required": true,
+          "description": "Incident ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_incident_list",
+      "description": "List Datadog incidents",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "incidents",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_incident_todo_create",
+      "description": "Create an incident todo",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "incident_id",
+          "type": "string",
+          "required": true,
+          "description": "Incident ID"
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "required": true,
+          "description": "Todo content"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "incident_id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_incident_todo_update",
+      "description": "Update an incident todo",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "incident_id",
+          "type": "string",
+          "required": true,
+          "description": "Incident ID"
+        },
+        {
+          "name": "todo_id",
+          "type": "string",
+          "required": true,
+          "description": "Todo ID"
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "required": false,
+          "description": "Todo content"
+        },
+        {
+          "name": "completed",
+          "type": "boolean",
+          "required": false,
+          "description": "Completed status"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "updated",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_incident_todo_delete",
+      "description": "Delete an incident todo",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "incident_id",
+          "type": "string",
+          "required": true,
+          "description": "Incident ID"
+        },
+        {
+          "name": "todo_id",
+          "type": "string",
+          "required": true,
+          "description": "Todo ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_security_rule_create",
+      "description": "Create a security monitoring rule",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "description": "Rule name"
+        },
+        {
+          "name": "message",
+          "type": "string",
+          "required": false,
+          "description": "Rule message"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_security_rule_get",
+      "description": "Get a security monitoring rule",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "rule_id",
+          "type": "string",
+          "required": true,
+          "description": "Rule ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_security_rule_update",
+      "description": "Update a security monitoring rule",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "rule_id",
+          "type": "string",
+          "required": true,
+          "description": "Rule ID"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "description": "Rule name"
+        },
+        {
+          "name": "message",
+          "type": "string",
+          "required": false,
+          "description": "Rule message"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "updated",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_security_rule_delete",
+      "description": "Delete a security monitoring rule",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "rule_id",
+          "type": "string",
+          "required": true,
+          "description": "Rule ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_security_rule_list",
+      "description": "List security monitoring rules",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "rules",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_security_signal_list",
+      "description": "List security signals",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "required": false,
+          "description": "Filter query"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "signals",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_security_signal_state_update",
+      "description": "Update security signal state",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "signal_id",
+          "type": "string",
+          "required": true,
+          "description": "Signal ID"
+        },
+        {
+          "name": "state",
+          "type": "select",
+          "required": false,
+          "options": [
+            "open",
+            "archived",
+            "under_review"
+          ],
+          "description": "Signal state"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "updated",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "signal_id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_user_create",
+      "description": "Create a Datadog user",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "required": true,
+          "description": "User email"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "description": "User name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_user_get",
+      "description": "Get a Datadog user",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "user_id",
+          "type": "string",
+          "required": true,
+          "description": "User ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_user_update",
+      "description": "Update a Datadog user",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "user_id",
+          "type": "string",
+          "required": true,
+          "description": "User ID"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "description": "User name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "updated",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_user_disable",
+      "description": "Disable a Datadog user",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "user_id",
+          "type": "string",
+          "required": true,
+          "description": "User ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_user_list",
+      "description": "List Datadog users",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "users",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_user_invite",
+      "description": "Invite a Datadog user",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "user_id",
+          "type": "string",
+          "required": true,
+          "description": "User ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "invitations",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_role_create",
+      "description": "Create a Datadog role",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "description": "Role name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_role_get",
+      "description": "Get a Datadog role",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "role_id",
+          "type": "string",
+          "required": true,
+          "description": "Role ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_role_update",
+      "description": "Update a Datadog role",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "role_id",
+          "type": "string",
+          "required": true,
+          "description": "Role ID"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "description": "Role name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "updated",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_role_delete",
+      "description": "Delete a Datadog role",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "role_id",
+          "type": "string",
+          "required": true,
+          "description": "Role ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_role_list",
+      "description": "List Datadog roles",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "roles",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_role_permission_add",
+      "description": "Add a permission to a role",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "role_id",
+          "type": "string",
+          "required": true,
+          "description": "Role ID"
+        },
+        {
+          "name": "permission_id",
+          "type": "string",
+          "required": true,
+          "description": "Permission ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "added",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "permission_count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_role_permission_remove",
+      "description": "Remove a permission from a role",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "role_id",
+          "type": "string",
+          "required": true,
+          "description": "Role ID"
+        },
+        {
+          "name": "permission_id",
+          "type": "string",
+          "required": true,
+          "description": "Permission ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "removed",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "role_id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "permission_id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_team_create",
+      "description": "Create a Datadog team",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "description": "Team name"
+        },
+        {
+          "name": "handle",
+          "type": "string",
+          "required": true,
+          "description": "Team handle"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "description": "Description"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "handle",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_team_get",
+      "description": "Get a Datadog team",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "team_id",
+          "type": "string",
+          "required": true,
+          "description": "Team ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_team_update",
+      "description": "Update a Datadog team",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "team_id",
+          "type": "string",
+          "required": true,
+          "description": "Team ID"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "description": "Team name"
+        },
+        {
+          "name": "handle",
+          "type": "string",
+          "required": false,
+          "description": "Team handle"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "updated",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_team_delete",
+      "description": "Delete a Datadog team",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "team_id",
+          "type": "string",
+          "required": true,
+          "description": "Team ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_team_list",
+      "description": "List Datadog teams",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "teams",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_team_member_add",
+      "description": "Add a member to a team",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "team_id",
+          "type": "string",
+          "required": true,
+          "description": "Team ID"
+        },
+        {
+          "name": "user_id",
+          "type": "string",
+          "required": true,
+          "description": "User ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "added",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_team_member_remove",
+      "description": "Remove a member from a team",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "team_id",
+          "type": "string",
+          "required": true,
+          "description": "Team ID"
+        },
+        {
+          "name": "user_id",
+          "type": "string",
+          "required": true,
+          "description": "User ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "removed",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "team_id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "user_id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_api_key_create",
+      "description": "Create a Datadog API key",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "description": "Key name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_api_key_get",
+      "description": "Get a Datadog API key",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "key_id",
+          "type": "string",
+          "required": true,
+          "description": "Key ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_api_key_update",
+      "description": "Update a Datadog API key",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "key_id",
+          "type": "string",
+          "required": true,
+          "description": "Key ID"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "description": "Key name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "updated",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_api_key_delete",
+      "description": "Delete a Datadog API key",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "key_id",
+          "type": "string",
+          "required": true,
+          "description": "Key ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_api_key_list",
+      "description": "List Datadog API keys",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "keys",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_app_key_create",
+      "description": "Create a Datadog application key",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "description": "Key name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_app_key_list",
+      "description": "List Datadog application keys",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "keys",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_app_key_delete",
+      "description": "Delete a Datadog application key",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "key_id",
+          "type": "string",
+          "required": true,
+          "description": "Key ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_notebook_create",
+      "description": "Create a Datadog notebook",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "description": "Notebook name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_notebook_get",
+      "description": "Get a Datadog notebook",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "notebook_id",
+          "type": "number",
+          "required": true,
+          "description": "Notebook ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_notebook_update",
+      "description": "Update a Datadog notebook",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "notebook_id",
+          "type": "number",
+          "required": true,
+          "description": "Notebook ID"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "description": "Notebook name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "updated",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_notebook_delete",
+      "description": "Delete a Datadog notebook",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "notebook_id",
+          "type": "number",
+          "required": true,
+          "description": "Notebook ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "id",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_notebook_list",
+      "description": "List Datadog notebooks",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "required": false,
+          "description": "Filter query"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "notebooks",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_host_list",
+      "description": "List Datadog hosts",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "filter",
+          "type": "string",
+          "required": false,
+          "description": "Filter string"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "hosts",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_host_mute",
+      "description": "Mute a Datadog host",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "host_name",
+          "type": "string",
+          "required": true,
+          "description": "Host name"
+        },
+        {
+          "name": "message",
+          "type": "string",
+          "required": false,
+          "description": "Mute message"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "hostname",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_host_unmute",
+      "description": "Unmute a Datadog host",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "host_name",
+          "type": "string",
+          "required": true,
+          "description": "Host name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "hostname",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "action",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_host_totals_get",
+      "description": "Get total host counts",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "total_active",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "total_up",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_tags_get",
+      "description": "Get tags for a host",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "host_name",
+          "type": "string",
+          "required": true,
+          "description": "Host name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "host",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "tags",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_tags_update",
+      "description": "Update tags for a host",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "host_name",
+          "type": "string",
+          "required": true,
+          "description": "Host name"
+        },
+        {
+          "name": "tags",
+          "type": "array",
+          "required": false,
+          "description": "Tags to set"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "host",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "tags",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_tags_delete",
+      "description": "Delete tags for a host",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "host_name",
+          "type": "string",
+          "required": true,
+          "description": "Host name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "host",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_tags_list",
+      "description": "List all tags",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "tags",
+          "type": "object",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_service_definition_upsert",
+      "description": "Create or update a service definition",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "service_name",
+          "type": "string",
+          "required": true,
+          "description": "Service name"
+        },
+        {
+          "name": "team",
+          "type": "string",
+          "required": false,
+          "description": "Team name"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "description": "Description"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "upserted",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "service_name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_service_definition_get",
+      "description": "Get a service definition",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "service_name",
+          "type": "string",
+          "required": true,
+          "description": "Service name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "service_name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "found",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_service_definition_delete",
+      "description": "Delete a service definition",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "service_name",
+          "type": "string",
+          "required": true,
+          "description": "Service name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "service_name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_service_definition_list",
+      "description": "List service definitions",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "services",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_apm_retention_filter_create",
+      "description": "Create an APM retention filter",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "description": "Filter name"
+        },
+        {
+          "name": "rate",
+          "type": "number",
+          "required": false,
+          "description": "Retention rate"
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "required": false,
+          "description": "Filter query"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_apm_retention_filter_update",
+      "description": "Update an APM retention filter",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "filter_id",
+          "type": "string",
+          "required": true,
+          "description": "Filter ID"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "description": "Filter name"
+        },
+        {
+          "name": "rate",
+          "type": "number",
+          "required": false,
+          "description": "Retention rate"
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "required": false,
+          "description": "Filter query"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "updated",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_apm_retention_filter_delete",
+      "description": "Delete an APM retention filter",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "filter_id",
+          "type": "string",
+          "required": true,
+          "description": "Filter ID"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "deleted",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_apm_retention_filter_list",
+      "description": "List APM retention filters",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "filters",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_span_search",
+      "description": "Search APM spans",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "required": false,
+          "description": "Search query"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "spans",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_span_aggregate",
+      "description": "Aggregate APM spans",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "required": false,
+          "description": "Aggregation query"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "buckets",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_audit_log_search",
+      "description": "Search audit logs",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "required": false,
+          "description": "Search query"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "events",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
+    },
+    {
+      "stepType": "step.datadog_audit_log_list",
+      "description": "List audit logs",
+      "configSchema": [
+        {
+          "name": "module",
+          "type": "string",
+          "required": false,
+          "defaultValue": "datadog",
+          "description": "Datadog module name"
+        },
+        {
+          "name": "query",
+          "type": "string",
+          "required": false,
+          "description": "Filter query"
+        }
+      ],
+      "outputSchema": [
+        {
+          "name": "events",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "description": ""
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Error message if the step failed"
+        }
+      ]
     }
+  ]
 }
