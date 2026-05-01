@@ -6,6 +6,8 @@ on:
     branches: [main]
 jobs:
   test:
+    permissions:
+      contents: read
     runs-on: [self-hosted, Linux, X64]
     steps:
       - uses: actions/checkout@v4
@@ -16,6 +18,8 @@ jobs:
       - run: go test ./... -v -race -count=1
 
   strict-contracts:
+    permissions:
+      contents: read
     runs-on: [self-hosted, Linux, X64]
     steps:
       - uses: actions/checkout@v4
@@ -24,5 +28,5 @@ jobs:
           go-version-file: go.mod
       - name: Check plugin.json exists
         run: test -f plugin.json || (echo "ERROR: plugin.json is missing" && exit 1)
-      - name: Validate plugin manifest (strict contracts)
-        run: GOPRIVATE=github.com/GoCodeAlone/* go run github.com/GoCodeAlone/workflow/cmd/wfctl@v0.3.56 plugin validate --file plugin.json
+      - name: Validate strict plugin contracts
+        run: GOPRIVATE=github.com/GoCodeAlone/* go run github.com/GoCodeAlone/workflow/cmd/wfctl@v0.20.1 audit plugins --strict-contracts --repo-root ..

@@ -1,0 +1,635 @@
+{
+  "version": "1",
+  "contracts": [
+    {
+      "kind": "module",
+      "type": "datadog.provider",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_metric_submit",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_metric_query",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_metric_query_scalar",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_metric_metadata_get",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_metric_metadata_update",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_metric_list_active",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_metric_tag_config_create",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_metric_tag_config_update",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_metric_tag_config_delete",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_metric_tag_config_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_event_create",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_event_get",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_event_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_event_search",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_monitor_create",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_monitor_get",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_monitor_update",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_monitor_delete",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_monitor_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_monitor_search",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_monitor_validate",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_dashboard_create",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_dashboard_get",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_dashboard_update",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_dashboard_delete",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_dashboard_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_log_submit",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_log_search",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_log_aggregate",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_log_archive_create",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_log_archive_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_log_archive_delete",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_log_pipeline_create",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_log_pipeline_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_log_pipeline_delete",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_synthetics_test_create",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_synthetics_test_get",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_synthetics_test_update",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_synthetics_test_delete",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_synthetics_test_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_synthetics_test_trigger",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_synthetics_results_get",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_synthetics_global_var_create",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_synthetics_global_var_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_synthetics_global_var_delete",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_slo_create",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_slo_get",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_slo_update",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_slo_delete",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_slo_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_slo_search",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_slo_history_get",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_downtime_create",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_downtime_get",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_downtime_update",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_downtime_cancel",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_downtime_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_incident_create",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_incident_get",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_incident_update",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_incident_delete",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_incident_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_incident_todo_create",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_incident_todo_update",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_incident_todo_delete",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_security_rule_create",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_security_rule_get",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_security_rule_update",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_security_rule_delete",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_security_rule_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_security_signal_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_security_signal_state_update",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_user_create",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_user_get",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_user_update",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_user_disable",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_user_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_user_invite",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_role_create",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_role_get",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_role_update",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_role_delete",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_role_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_role_permission_add",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_role_permission_remove",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_team_create",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_team_get",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_team_update",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_team_delete",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_team_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_team_member_add",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_team_member_remove",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_api_key_create",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_api_key_get",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_api_key_update",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_api_key_delete",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_api_key_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_app_key_create",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_app_key_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_app_key_delete",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_notebook_create",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_notebook_get",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_notebook_update",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_notebook_delete",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_notebook_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_host_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_host_mute",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_host_unmute",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_host_totals_get",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_tags_get",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_tags_update",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_tags_delete",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_tags_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_service_definition_upsert",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_service_definition_get",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_service_definition_delete",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_service_definition_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_apm_retention_filter_create",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_apm_retention_filter_update",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_apm_retention_filter_delete",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_apm_retention_filter_list",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_span_search",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_span_aggregate",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_audit_log_search",
+      "mode": "strict"
+    },
+    {
+      "kind": "step",
+      "type": "step.datadog_audit_log_list",
+      "mode": "strict"
+    }
+  ]
+}
