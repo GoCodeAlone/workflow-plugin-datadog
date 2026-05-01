@@ -14,3 +14,15 @@ jobs:
           go-version-file: go.mod
       - run: go build ./...
       - run: go test ./... -v -race -count=1
+
+  strict-contracts:
+    runs-on: [self-hosted, Linux, X64]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - name: Check plugin.json exists
+        run: test -f plugin.json || (echo "ERROR: plugin.json is missing" && exit 1)
+      - name: Validate plugin manifest (strict contracts)
+        run: GOPRIVATE=github.com/GoCodeAlone/* go run github.com/GoCodeAlone/workflow/cmd/wfctl@v0.3.56 plugin validate --file plugin.json
