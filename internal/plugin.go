@@ -13,7 +13,8 @@ import (
 // unreleased dev builds; goreleaser overrides with the real release tag.
 var Version = "0.0.0"
 
-// datadogPlugin implements sdk.PluginProvider, sdk.ModuleProvider, and sdk.StepProvider.
+// datadogPlugin implements sdk.PluginProvider, sdk.ModuleProvider, sdk.StepProvider,
+// and sdk.SchemaProvider.
 type datadogPlugin struct{}
 
 // NewDatadogPlugin returns a new datadogPlugin instance.
@@ -58,4 +59,42 @@ func (p *datadogPlugin) StepTypes() []string {
 // CreateStep creates a step instance of the given type.
 func (p *datadogPlugin) CreateStep(typeName, name string, config map[string]any) (sdk.StepInstance, error) {
 	return createStep(typeName, name, config)
+}
+
+// ModuleSchemas implements sdk.SchemaProvider. It returns contract descriptors
+// for each module type this plugin provides, enabling strict-contract audits.
+func (p *datadogPlugin) ModuleSchemas() []sdk.ModuleSchemaData {
+	return []sdk.ModuleSchemaData{
+		{
+			Type:        "datadog.provider",
+			Label:       "Datadog Provider",
+			Category:    "observability",
+			Description: "Authenticates with the Datadog API and makes a scoped client available to all Datadog step types.",
+			ConfigFields: []sdk.ConfigField{
+				{
+					Name:        "apiKey",
+					Type:        "string",
+					Description: "Datadog API key (required).",
+					Required:    true,
+				},
+				{
+					Name:        "appKey",
+					Type:        "string",
+					Description: "Datadog application key (required).",
+					Required:    true,
+				},
+				{
+					Name:         "site",
+					Type:         "string",
+					Description:  "Datadog site (e.g. datadoghq.com, datadoghq.eu). Defaults to datadoghq.com.",
+					DefaultValue: "datadoghq.com",
+				},
+				{
+					Name:        "apiUrl",
+					Type:        "string",
+					Description: "Optional custom API URL override (useful for mocking/testing).",
+				},
+			},
+		},
+	}
 }

@@ -164,7 +164,7 @@
         {
           "name": "metric",
           "type": "string",
-          "required": "",
+          "required": false,
           "description": "Metric name"
         },
         {
