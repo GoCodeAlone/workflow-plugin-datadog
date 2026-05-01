@@ -13,6 +13,14 @@ import (
 // unreleased dev builds; goreleaser overrides with the real release tag.
 var Version = "0.0.0"
 
+// Compile-time interface assertions.
+var (
+	_ sdk.PluginProvider = (*datadogPlugin)(nil)
+	_ sdk.ModuleProvider = (*datadogPlugin)(nil)
+	_ sdk.StepProvider   = (*datadogPlugin)(nil)
+	_ sdk.SchemaProvider = (*datadogPlugin)(nil)
+)
+
 // datadogPlugin implements sdk.PluginProvider, sdk.ModuleProvider, sdk.StepProvider,
 // and sdk.SchemaProvider.
 type datadogPlugin struct{}
