@@ -201,12 +201,12 @@
                 {
                     "key": "submitted",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the operation was successfully submitted."
                 },
                 {
                     "key": "metric",
                     "type": "string",
-                    "description": ""
+                    "description": "The metric name."
                 },
                 {
                     "key": "error",
@@ -254,12 +254,12 @@
                 {
                     "key": "series",
                     "type": "array",
-                    "description": ""
+                    "description": "Array of metric time series data points."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -307,12 +307,12 @@
                 {
                     "key": "queried",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the query was successfully executed."
                 },
                 {
                     "key": "query",
                     "type": "string",
-                    "description": ""
+                    "description": "The query used."
                 },
                 {
                     "key": "error",
@@ -346,22 +346,22 @@
                 {
                     "key": "type",
                     "type": "string",
-                    "description": ""
+                    "description": "The type of the resource."
                 },
                 {
                     "key": "description",
                     "type": "string",
-                    "description": ""
+                    "description": "The description of the resource."
                 },
                 {
                     "key": "unit",
                     "type": "string",
-                    "description": ""
+                    "description": "The unit of measurement."
                 },
                 {
                     "key": "short_name",
                     "type": "string",
-                    "description": ""
+                    "description": "The short name or identifier."
                 },
                 {
                     "key": "error",
@@ -416,17 +416,17 @@
                 {
                     "key": "type",
                     "type": "string",
-                    "description": ""
+                    "description": "The type of the resource."
                 },
                 {
                     "key": "description",
                     "type": "string",
-                    "description": ""
+                    "description": "The description of the resource."
                 },
                 {
                     "key": "unit",
                     "type": "string",
-                    "description": ""
+                    "description": "The unit of measurement."
                 },
                 {
                     "key": "error",
@@ -467,12 +467,12 @@
                 {
                     "key": "metrics",
                     "type": "array",
-                    "description": ""
+                    "description": "The metrics of the operation result."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -513,12 +513,12 @@
                 {
                     "key": "created",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully created."
                 },
                 {
                     "key": "metric",
                     "type": "string",
-                    "description": ""
+                    "description": "The metric name."
                 },
                 {
                     "key": "error",
@@ -559,12 +559,12 @@
                 {
                     "key": "updated",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully updated."
                 },
                 {
                     "key": "metric",
                     "type": "string",
-                    "description": ""
+                    "description": "The metric name."
                 },
                 {
                     "key": "error",
@@ -598,12 +598,12 @@
                 {
                     "key": "deleted",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully deleted."
                 },
                 {
                     "key": "metric",
                     "type": "string",
-                    "description": ""
+                    "description": "The metric name."
                 },
                 {
                     "key": "error",
@@ -630,12 +630,12 @@
                 {
                     "key": "configurations",
                     "type": "array",
-                    "description": ""
+                    "description": "The configurations of the operation result."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -690,17 +690,17 @@
                 {
                     "key": "id",
                     "type": "number",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "title",
                     "type": "string",
-                    "description": ""
+                    "description": "The title of the resource."
                 },
                 {
                     "key": "status",
                     "type": "string",
-                    "description": ""
+                    "description": "The current status of the resource."
                 },
                 {
                     "key": "error",
@@ -734,27 +734,27 @@
                 {
                     "key": "found",
                     "type": "boolean",
-                    "description": ""
+                    "description": "The found of the operation result."
                 },
                 {
                     "key": "id",
                     "type": "number",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "title",
                     "type": "string",
-                    "description": ""
+                    "description": "The title of the resource."
                 },
                 {
                     "key": "text",
                     "type": "string",
-                    "description": ""
+                    "description": "The text of the operation result."
                 },
                 {
                     "key": "host",
                     "type": "string",
-                    "description": ""
+                    "description": "The host of the operation result."
                 },
                 {
                     "key": "error",
@@ -802,12 +802,12 @@
                 {
                     "key": "events",
                     "type": "array",
-                    "description": ""
+                    "description": "List of events."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -862,12 +862,12 @@
                 {
                     "key": "events",
                     "type": "array",
-                    "description": ""
+                    "description": "List of events."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -936,12 +936,12 @@
                 {
                     "key": "id",
                     "type": "number",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -975,22 +975,22 @@
                 {
                     "key": "id",
                     "type": "number",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "query",
                     "type": "string",
-                    "description": ""
+                    "description": "The query used."
                 },
                 {
                     "key": "message",
                     "type": "string",
-                    "description": ""
+                    "description": "The message content."
                 },
                 {
                     "key": "error",
@@ -1045,12 +1045,12 @@
                 {
                     "key": "id",
                     "type": "number",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -1084,12 +1084,12 @@
                 {
                     "key": "deleted",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully deleted."
                 },
                 {
                     "key": "id",
                     "type": "number",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "error",
@@ -1130,12 +1130,12 @@
                 {
                     "key": "monitors",
                     "type": "array",
-                    "description": ""
+                    "description": "List of monitors."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -1169,12 +1169,12 @@
                 {
                     "key": "monitors",
                     "type": "array",
-                    "description": ""
+                    "description": "List of monitors."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -1208,7 +1208,7 @@
                 {
                     "key": "valid",
                     "type": "boolean",
-                    "description": ""
+                    "description": "The valid of the operation result."
                 },
                 {
                     "key": "error",
@@ -1260,17 +1260,17 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "title",
                     "type": "string",
-                    "description": ""
+                    "description": "The title of the resource."
                 },
                 {
                     "key": "url",
                     "type": "string",
-                    "description": ""
+                    "description": "The URL of the resource."
                 },
                 {
                     "key": "error",
@@ -1304,22 +1304,22 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "title",
                     "type": "string",
-                    "description": ""
+                    "description": "The title of the resource."
                 },
                 {
                     "key": "url",
                     "type": "string",
-                    "description": ""
+                    "description": "The URL of the resource."
                 },
                 {
                     "key": "description",
                     "type": "string",
-                    "description": ""
+                    "description": "The description of the resource."
                 },
                 {
                     "key": "error",
@@ -1360,12 +1360,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "title",
                     "type": "string",
-                    "description": ""
+                    "description": "The title of the resource."
                 },
                 {
                     "key": "error",
@@ -1399,12 +1399,12 @@
                 {
                     "key": "deleted",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully deleted."
                 },
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "error",
@@ -1431,12 +1431,12 @@
                 {
                     "key": "dashboards",
                     "type": "array",
-                    "description": ""
+                    "description": "List of dashboards."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -1498,7 +1498,7 @@
                 {
                     "key": "submitted",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the operation was successfully submitted."
                 },
                 {
                     "key": "error",
@@ -1532,12 +1532,12 @@
                 {
                     "key": "logs",
                     "type": "array",
-                    "description": ""
+                    "description": "List of log entries."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -1571,12 +1571,12 @@
                 {
                     "key": "buckets",
                     "type": "array",
-                    "description": ""
+                    "description": "The buckets of the operation result."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -1638,12 +1638,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -1670,12 +1670,12 @@
                 {
                     "key": "archives",
                     "type": "array",
-                    "description": ""
+                    "description": "The archives of the operation result."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -1709,12 +1709,12 @@
                 {
                     "key": "deleted",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully deleted."
                 },
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "error",
@@ -1748,12 +1748,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -1780,12 +1780,12 @@
                 {
                     "key": "pipelines",
                     "type": "array",
-                    "description": ""
+                    "description": "The pipelines of the operation result."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -1819,12 +1819,12 @@
                 {
                     "key": "deleted",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully deleted."
                 },
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "error",
@@ -1879,12 +1879,12 @@
                 {
                     "key": "public_id",
                     "type": "string",
-                    "description": ""
+                    "description": "The public id of the operation result."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -1918,12 +1918,12 @@
                 {
                     "key": "public_id",
                     "type": "string",
-                    "description": ""
+                    "description": "The public id of the operation result."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -1978,12 +1978,12 @@
                 {
                     "key": "public_id",
                     "type": "string",
-                    "description": ""
+                    "description": "The public id of the operation result."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -2024,12 +2024,12 @@
                 {
                     "key": "deleted",
                     "type": "array",
-                    "description": ""
+                    "description": "Whether the resource was successfully deleted."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -2056,12 +2056,12 @@
                 {
                     "key": "tests",
                     "type": "array",
-                    "description": ""
+                    "description": "List of synthetic tests."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -2102,12 +2102,12 @@
                 {
                     "key": "results",
                     "type": "array",
-                    "description": ""
+                    "description": "List of results."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -2148,12 +2148,12 @@
                 {
                     "key": "result_id",
                     "type": "string",
-                    "description": ""
+                    "description": "The result id of the operation result."
                 },
                 {
                     "key": "status",
                     "type": "number",
-                    "description": ""
+                    "description": "The current status of the resource."
                 },
                 {
                     "key": "error",
@@ -2201,12 +2201,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -2233,12 +2233,12 @@
                 {
                     "key": "variables",
                     "type": "array",
-                    "description": ""
+                    "description": "The variables of the operation result."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -2272,12 +2272,12 @@
                 {
                     "key": "deleted",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully deleted."
                 },
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "error",
@@ -2329,12 +2329,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -2368,17 +2368,17 @@
                 {
                     "key": "found",
                     "type": "boolean",
-                    "description": ""
+                    "description": "The found of the operation result."
                 },
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -2419,12 +2419,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "updated",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully updated."
                 },
                 {
                     "key": "error",
@@ -2458,12 +2458,12 @@
                 {
                     "key": "deleted",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully deleted."
                 },
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "error",
@@ -2497,12 +2497,12 @@
                 {
                     "key": "slos",
                     "type": "array",
-                    "description": ""
+                    "description": "List of SLOs."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -2536,12 +2536,12 @@
                 {
                     "key": "slos",
                     "type": "array",
-                    "description": ""
+                    "description": "List of SLOs."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -2589,17 +2589,17 @@
                 {
                     "key": "slo_id",
                     "type": "string",
-                    "description": ""
+                    "description": "The slo id of the operation result."
                 },
                 {
                     "key": "from",
                     "type": "number",
-                    "description": ""
+                    "description": "The from of the operation result."
                 },
                 {
                     "key": "to",
                     "type": "number",
-                    "description": ""
+                    "description": "The to of the operation result."
                 },
                 {
                     "key": "error",
@@ -2654,17 +2654,17 @@
                 {
                     "key": "id",
                     "type": "number",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "scope",
                     "type": "array",
-                    "description": ""
+                    "description": "The scope of the operation result."
                 },
                 {
                     "key": "message",
                     "type": "string",
-                    "description": ""
+                    "description": "The message content."
                 },
                 {
                     "key": "error",
@@ -2698,17 +2698,17 @@
                 {
                     "key": "id",
                     "type": "number",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "scope",
                     "type": "array",
-                    "description": ""
+                    "description": "The scope of the operation result."
                 },
                 {
                     "key": "message",
                     "type": "string",
-                    "description": ""
+                    "description": "The message content."
                 },
                 {
                     "key": "error",
@@ -2756,12 +2756,12 @@
                 {
                     "key": "id",
                     "type": "number",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "updated",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully updated."
                 },
                 {
                     "key": "error",
@@ -2795,12 +2795,12 @@
                 {
                     "key": "cancelled",
                     "type": "boolean",
-                    "description": ""
+                    "description": "The cancelled of the operation result."
                 },
                 {
                     "key": "id",
                     "type": "number",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "error",
@@ -2834,12 +2834,12 @@
                 {
                     "key": "downtimes",
                     "type": "array",
-                    "description": ""
+                    "description": "List of downtimes."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -2880,12 +2880,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "title",
                     "type": "string",
-                    "description": ""
+                    "description": "The title of the resource."
                 },
                 {
                     "key": "error",
@@ -2919,12 +2919,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "title",
                     "type": "string",
-                    "description": ""
+                    "description": "The title of the resource."
                 },
                 {
                     "key": "error",
@@ -2965,12 +2965,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "updated",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully updated."
                 },
                 {
                     "key": "error",
@@ -3004,12 +3004,12 @@
                 {
                     "key": "deleted",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully deleted."
                 },
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "error",
@@ -3036,12 +3036,12 @@
                 {
                     "key": "incidents",
                     "type": "array",
-                    "description": ""
+                    "description": "List of incidents."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -3082,12 +3082,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "incident_id",
                     "type": "string",
-                    "description": ""
+                    "description": "The incident id of the operation result."
                 },
                 {
                     "key": "error",
@@ -3142,12 +3142,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "updated",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully updated."
                 },
                 {
                     "key": "error",
@@ -3188,12 +3188,12 @@
                 {
                     "key": "deleted",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully deleted."
                 },
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "error",
@@ -3234,12 +3234,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -3273,12 +3273,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -3326,12 +3326,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "updated",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully updated."
                 },
                 {
                     "key": "error",
@@ -3365,12 +3365,12 @@
                 {
                     "key": "deleted",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully deleted."
                 },
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "error",
@@ -3397,12 +3397,12 @@
                 {
                     "key": "rules",
                     "type": "array",
-                    "description": ""
+                    "description": "List of security rules."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -3436,12 +3436,12 @@
                 {
                     "key": "signals",
                     "type": "array",
-                    "description": ""
+                    "description": "List of security signals."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -3487,12 +3487,12 @@
                 {
                     "key": "updated",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully updated."
                 },
                 {
                     "key": "signal_id",
                     "type": "string",
-                    "description": ""
+                    "description": "The signal id of the operation result."
                 },
                 {
                     "key": "error",
@@ -3533,12 +3533,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "email",
                     "type": "string",
-                    "description": ""
+                    "description": "The email address."
                 },
                 {
                     "key": "error",
@@ -3572,17 +3572,17 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "email",
                     "type": "string",
-                    "description": ""
+                    "description": "The email address."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -3623,12 +3623,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "updated",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully updated."
                 },
                 {
                     "key": "error",
@@ -3662,12 +3662,12 @@
                 {
                     "key": "disabled",
                     "type": "boolean",
-                    "description": ""
+                    "description": "The disabled of the operation result."
                 },
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "error",
@@ -3694,12 +3694,12 @@
                 {
                     "key": "users",
                     "type": "array",
-                    "description": ""
+                    "description": "List of users."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -3733,12 +3733,12 @@
                 {
                     "key": "invitations",
                     "type": "array",
-                    "description": ""
+                    "description": "The invitations of the operation result."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -3772,12 +3772,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -3811,12 +3811,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -3857,12 +3857,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "updated",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully updated."
                 },
                 {
                     "key": "error",
@@ -3896,12 +3896,12 @@
                 {
                     "key": "deleted",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully deleted."
                 },
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "error",
@@ -3928,12 +3928,12 @@
                 {
                     "key": "roles",
                     "type": "array",
-                    "description": ""
+                    "description": "List of roles."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -3974,12 +3974,12 @@
                 {
                     "key": "added",
                     "type": "boolean",
-                    "description": ""
+                    "description": "The added of the operation result."
                 },
                 {
                     "key": "permission_count",
                     "type": "number",
-                    "description": ""
+                    "description": "The permission count of the operation result."
                 },
                 {
                     "key": "error",
@@ -4020,17 +4020,17 @@
                 {
                     "key": "removed",
                     "type": "boolean",
-                    "description": ""
+                    "description": "The removed of the operation result."
                 },
                 {
                     "key": "role_id",
                     "type": "string",
-                    "description": ""
+                    "description": "The role id of the operation result."
                 },
                 {
                     "key": "permission_id",
                     "type": "string",
-                    "description": ""
+                    "description": "The permission id of the operation result."
                 },
                 {
                     "key": "error",
@@ -4078,17 +4078,17 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "handle",
                     "type": "string",
-                    "description": ""
+                    "description": "The user handle or email."
                 },
                 {
                     "key": "error",
@@ -4122,12 +4122,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -4175,12 +4175,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "updated",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully updated."
                 },
                 {
                     "key": "error",
@@ -4214,12 +4214,12 @@
                 {
                     "key": "deleted",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully deleted."
                 },
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "error",
@@ -4246,12 +4246,12 @@
                 {
                     "key": "teams",
                     "type": "array",
-                    "description": ""
+                    "description": "List of teams."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -4292,12 +4292,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "added",
                     "type": "boolean",
-                    "description": ""
+                    "description": "The added of the operation result."
                 },
                 {
                     "key": "error",
@@ -4338,17 +4338,17 @@
                 {
                     "key": "removed",
                     "type": "boolean",
-                    "description": ""
+                    "description": "The removed of the operation result."
                 },
                 {
                     "key": "team_id",
                     "type": "string",
-                    "description": ""
+                    "description": "The team id of the operation result."
                 },
                 {
                     "key": "user_id",
                     "type": "string",
-                    "description": ""
+                    "description": "The user id of the operation result."
                 },
                 {
                     "key": "error",
@@ -4382,12 +4382,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -4421,12 +4421,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -4467,12 +4467,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "updated",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully updated."
                 },
                 {
                     "key": "error",
@@ -4506,12 +4506,12 @@
                 {
                     "key": "deleted",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully deleted."
                 },
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "error",
@@ -4538,12 +4538,12 @@
                 {
                     "key": "keys",
                     "type": "array",
-                    "description": ""
+                    "description": "List of API/application keys."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -4577,12 +4577,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -4609,12 +4609,12 @@
                 {
                     "key": "keys",
                     "type": "array",
-                    "description": ""
+                    "description": "List of API/application keys."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -4648,12 +4648,12 @@
                 {
                     "key": "deleted",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully deleted."
                 },
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "error",
@@ -4687,12 +4687,12 @@
                 {
                     "key": "id",
                     "type": "number",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -4726,12 +4726,12 @@
                 {
                     "key": "id",
                     "type": "number",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -4772,12 +4772,12 @@
                 {
                     "key": "id",
                     "type": "number",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "updated",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully updated."
                 },
                 {
                     "key": "error",
@@ -4811,12 +4811,12 @@
                 {
                     "key": "deleted",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully deleted."
                 },
                 {
                     "key": "id",
                     "type": "number",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "error",
@@ -4850,12 +4850,12 @@
                 {
                     "key": "notebooks",
                     "type": "array",
-                    "description": ""
+                    "description": "List of notebooks."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -4889,12 +4889,12 @@
                 {
                     "key": "hosts",
                     "type": "array",
-                    "description": ""
+                    "description": "List of hosts."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -4935,12 +4935,12 @@
                 {
                     "key": "hostname",
                     "type": "string",
-                    "description": ""
+                    "description": "The hostname of the operation result."
                 },
                 {
                     "key": "action",
                     "type": "string",
-                    "description": ""
+                    "description": "The action of the operation result."
                 },
                 {
                     "key": "error",
@@ -4974,12 +4974,12 @@
                 {
                     "key": "hostname",
                     "type": "string",
-                    "description": ""
+                    "description": "The hostname of the operation result."
                 },
                 {
                     "key": "action",
                     "type": "string",
-                    "description": ""
+                    "description": "The action of the operation result."
                 },
                 {
                     "key": "error",
@@ -5006,12 +5006,12 @@
                 {
                     "key": "total_active",
                     "type": "number",
-                    "description": ""
+                    "description": "The total active of the operation result."
                 },
                 {
                     "key": "total_up",
                     "type": "number",
-                    "description": ""
+                    "description": "The total up of the operation result."
                 },
                 {
                     "key": "error",
@@ -5045,12 +5045,12 @@
                 {
                     "key": "host",
                     "type": "string",
-                    "description": ""
+                    "description": "The host of the operation result."
                 },
                 {
                     "key": "tags",
                     "type": "array",
-                    "description": ""
+                    "description": "List of tags."
                 },
                 {
                     "key": "error",
@@ -5091,12 +5091,12 @@
                 {
                     "key": "host",
                     "type": "string",
-                    "description": ""
+                    "description": "The host of the operation result."
                 },
                 {
                     "key": "tags",
                     "type": "array",
-                    "description": ""
+                    "description": "List of tags."
                 },
                 {
                     "key": "error",
@@ -5130,12 +5130,12 @@
                 {
                     "key": "deleted",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully deleted."
                 },
                 {
                     "key": "host",
                     "type": "string",
-                    "description": ""
+                    "description": "The host of the operation result."
                 },
                 {
                     "key": "error",
@@ -5162,7 +5162,7 @@
                 {
                     "key": "tags",
                     "type": "object",
-                    "description": ""
+                    "description": "List of tags."
                 },
                 {
                     "key": "error",
@@ -5210,12 +5210,12 @@
                 {
                     "key": "upserted",
                     "type": "boolean",
-                    "description": ""
+                    "description": "The upserted of the operation result."
                 },
                 {
                     "key": "service_name",
                     "type": "string",
-                    "description": ""
+                    "description": "The service name of the operation result."
                 },
                 {
                     "key": "error",
@@ -5249,12 +5249,12 @@
                 {
                     "key": "service_name",
                     "type": "string",
-                    "description": ""
+                    "description": "The service name of the operation result."
                 },
                 {
                     "key": "found",
                     "type": "boolean",
-                    "description": ""
+                    "description": "The found of the operation result."
                 },
                 {
                     "key": "error",
@@ -5288,12 +5288,12 @@
                 {
                     "key": "deleted",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully deleted."
                 },
                 {
                     "key": "service_name",
                     "type": "string",
-                    "description": ""
+                    "description": "The service name of the operation result."
                 },
                 {
                     "key": "error",
@@ -5320,12 +5320,12 @@
                 {
                     "key": "services",
                     "type": "array",
-                    "description": ""
+                    "description": "List of services."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -5373,12 +5373,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "name",
                     "type": "string",
-                    "description": ""
+                    "description": "The name of the resource."
                 },
                 {
                     "key": "error",
@@ -5433,12 +5433,12 @@
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "updated",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully updated."
                 },
                 {
                     "key": "error",
@@ -5472,12 +5472,12 @@
                 {
                     "key": "deleted",
                     "type": "boolean",
-                    "description": ""
+                    "description": "Whether the resource was successfully deleted."
                 },
                 {
                     "key": "id",
                     "type": "string",
-                    "description": ""
+                    "description": "The unique identifier of the resource."
                 },
                 {
                     "key": "error",
@@ -5504,12 +5504,12 @@
                 {
                     "key": "filters",
                     "type": "array",
-                    "description": ""
+                    "description": "The filters of the operation result."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -5543,12 +5543,12 @@
                 {
                     "key": "spans",
                     "type": "array",
-                    "description": ""
+                    "description": "List of APM spans."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -5582,12 +5582,12 @@
                 {
                     "key": "buckets",
                     "type": "array",
-                    "description": ""
+                    "description": "The buckets of the operation result."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -5621,12 +5621,12 @@
                 {
                     "key": "events",
                     "type": "array",
-                    "description": ""
+                    "description": "List of events."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
@@ -5660,12 +5660,12 @@
                 {
                     "key": "events",
                     "type": "array",
-                    "description": ""
+                    "description": "List of events."
                 },
                 {
                     "key": "count",
                     "type": "number",
-                    "description": ""
+                    "description": "Number of items returned."
                 },
                 {
                     "key": "error",
