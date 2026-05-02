@@ -166,7 +166,7 @@
                 {
                     "key": "metric",
                     "type": "string",
-                    "required": false,
+                    "required": true,
                     "description": "Metric name",
                     "label": "Metric"
                 },
@@ -734,7 +734,7 @@
                 {
                     "key": "found",
                     "type": "boolean",
-                    "description": "The found of the operation result."
+                    "description": "Whether the event was found."
                 },
                 {
                     "key": "id",
@@ -1208,7 +1208,7 @@
                 {
                     "key": "valid",
                     "type": "boolean",
-                    "description": "The valid of the operation result."
+                    "description": "Whether the monitor configuration is valid."
                 },
                 {
                     "key": "error",
@@ -1352,7 +1352,7 @@
                     "key": "title",
                     "type": "string",
                     "required": false,
-                    "description": "Dashboard title",
+                    "description": "Dashboard title. Defaults to \"Updated Dashboard\" when not provided.",
                     "label": "Title"
                 }
             ],
@@ -1630,7 +1630,7 @@
                     "key": "role_arn",
                     "type": "string",
                     "required": false,
-                    "description": "IAM role ARN",
+                    "description": "IAM role name for the Datadog-AWS S3 integration (maps to RoleName, not an ARN)",
                     "label": "Role Arn"
                 }
             ],
@@ -2009,14 +2009,14 @@
                     "key": "public_ids",
                     "type": "array",
                     "required": false,
-                    "description": "List of public IDs",
+                    "description": "List of public IDs to delete. At least one of public_ids or public_id is required.",
                     "label": "Public Ids"
                 },
                 {
                     "key": "public_id",
                     "type": "string",
                     "required": false,
-                    "description": "Single public ID",
+                    "description": "Single public ID to delete. At least one of public_id or public_ids is required.",
                     "label": "Public Id"
                 }
             ],
@@ -2087,14 +2087,14 @@
                     "key": "public_ids",
                     "type": "array",
                     "required": false,
-                    "description": "List of public IDs",
+                    "description": "List of public IDs to trigger. At least one of public_ids or public_id is required.",
                     "label": "Public Ids"
                 },
                 {
                     "key": "public_id",
                     "type": "string",
                     "required": false,
-                    "description": "Single public ID",
+                    "description": "Single public ID to trigger. At least one of public_id or public_ids is required.",
                     "label": "Public Id"
                 }
             ],
@@ -3134,7 +3134,7 @@
                     "key": "completed",
                     "type": "boolean",
                     "required": false,
-                    "description": "Completed status",
+                    "description": "Set to true to mark the todo as completed. Setting false has no effect.",
                     "label": "Completed"
                 }
             ],
@@ -3310,7 +3310,7 @@
                 {
                     "key": "name",
                     "type": "string",
-                    "required": false,
+                    "required": true,
                     "description": "Rule name",
                     "label": "Name"
                 },
@@ -3848,7 +3848,7 @@
                 {
                     "key": "name",
                     "type": "string",
-                    "required": false,
+                    "required": true,
                     "description": "Role name",
                     "label": "Name"
                 }
@@ -4167,7 +4167,7 @@
                     "key": "handle",
                     "type": "string",
                     "required": false,
-                    "description": "Team handle",
+                    "description": "Team handle. Defaults to team_id when not provided, which may overwrite an existing handle.",
                     "label": "Handle"
                 }
             ],
@@ -5197,13 +5197,6 @@
                     "required": false,
                     "description": "Team name",
                     "label": "Team"
-                },
-                {
-                    "key": "description",
-                    "type": "string",
-                    "required": false,
-                    "description": "Description",
-                    "label": "Description"
                 }
             ],
             "outputs": [
@@ -5410,7 +5403,7 @@
                 {
                     "key": "name",
                     "type": "string",
-                    "required": false,
+                    "required": true,
                     "description": "Filter name",
                     "label": "Name"
                 },
