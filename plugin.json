@@ -598,7 +598,7 @@
                 {
                     "key": "deleted",
                     "type": "boolean",
-                    "description": "List of deleted public IDs."
+                    "description": "Whether the metric tag configuration was successfully deleted."
                 },
                 {
                     "key": "metric",
