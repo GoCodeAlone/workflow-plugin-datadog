@@ -598,7 +598,7 @@
                 {
                     "key": "deleted",
                     "type": "boolean",
-                    "description": "Whether the resource was successfully deleted."
+                    "description": "List of deleted public IDs."
                 },
                 {
                     "key": "metric",
@@ -1616,7 +1616,7 @@
                     "key": "bucket",
                     "type": "string",
                     "required": false,
-                    "description": "S3 bucket",
+                    "description": "S3 bucket name. Defaults to \"my-bucket\" when not provided, which will fail with a real Datadog API call.",
                     "label": "Bucket"
                 },
                 {
@@ -1630,8 +1630,8 @@
                     "key": "role_arn",
                     "type": "string",
                     "required": false,
-                    "description": "IAM role name for the Datadog-AWS S3 integration (maps to RoleName, not an ARN)",
-                    "label": "Role Arn"
+                    "description": "IAM role name used by the Datadog-AWS S3 integration (not an ARN). Corresponds to the RoleName field in the Datadog API.",
+                    "label": "Role Name"
                 }
             ],
             "outputs": [
@@ -1857,14 +1857,14 @@
                     "key": "url",
                     "type": "string",
                     "required": false,
-                    "description": "Test URL",
+                    "description": "Test URL. Defaults to \"https://example.com\" when not provided.",
                     "label": "Url"
                 },
                 {
                     "key": "locations",
                     "type": "array",
                     "required": false,
-                    "description": "Test locations",
+                    "description": "Test locations. Defaults to \"aws:us-east-1\" when not provided.",
                     "label": "Locations"
                 },
                 {
@@ -1963,14 +1963,14 @@
                     "key": "url",
                     "type": "string",
                     "required": false,
-                    "description": "Test URL",
+                    "description": "Test URL. Defaults to \"https://example.com\" when not provided, which will overwrite the existing URL.",
                     "label": "Url"
                 },
                 {
                     "key": "locations",
                     "type": "array",
                     "required": false,
-                    "description": "Test locations",
+                    "description": "Test locations. Defaults to \"aws:us-east-1\" when not provided, which will overwrite the existing locations.",
                     "label": "Locations"
                 }
             ],
@@ -2024,7 +2024,7 @@
                 {
                     "key": "deleted",
                     "type": "array",
-                    "description": "Whether the resource was successfully deleted."
+                    "description": "List of deleted public IDs."
                 },
                 {
                     "key": "count",
@@ -4088,7 +4088,7 @@
                 {
                     "key": "handle",
                     "type": "string",
-                    "description": "The user handle or email."
+                    "description": "The team handle."
                 },
                 {
                     "key": "error",
@@ -5006,12 +5006,12 @@
                 {
                     "key": "total_active",
                     "type": "number",
-                    "description": "The total active of the operation result."
+                    "description": "Total number of active hosts."
                 },
                 {
                     "key": "total_up",
                     "type": "number",
-                    "description": "The total up of the operation result."
+                    "description": "Total number of hosts reporting as up."
                 },
                 {
                     "key": "error",
