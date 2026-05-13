@@ -1,13 +1,13 @@
 {
     "name": "workflow-plugin-datadog",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Datadog monitoring and observability plugin",
     "author": "GoCodeAlone",
     "license": "MIT",
     "type": "external",
     "tier": "community",
     "private": false,
-    "minEngineVersion": "0.3.30",
+    "minEngineVersion": "0.51.7",
     "keywords": [
         "datadog",
         "monitoring",
