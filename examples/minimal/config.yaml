@@ -1,0 +1,16 @@
+# Minimal config exercising workflow-plugin-datadog.
+# Schema-validate with: wfctl validate --skip-unknown-types examples/minimal/config.yaml
+
+version: 1
+
+modules:
+  - name: datadog-provider
+    type: datadog.provider
+    config: {}
+
+workflows:
+  pipeline:
+    steps:
+      - name: example
+        type: step.datadog_metric_submit
+        config: {}
