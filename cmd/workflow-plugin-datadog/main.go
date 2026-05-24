@@ -8,5 +8,5 @@ import (
 var version = "dev"
 
 func main() {
-	sdk.Serve(internal.NewDatadogPlugin())
+	sdk.Serve(internal.NewDatadogPlugin(), sdk.WithBuildVersion(sdk.ResolveBuildVersion(internal.Version)))
 }
