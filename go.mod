@@ -4,7 +4,7 @@ go 1.26.0
 
 require (
 	github.com/DataDog/datadog-api-client-go/v2 v2.35.0
-	github.com/GoCodeAlone/workflow v0.62.0
+	github.com/GoCodeAlone/workflow v0.64.0
 )
 
 require (
