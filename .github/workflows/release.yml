@@ -127,6 +127,7 @@ jobs:
             jq '.[] | {name, type, goos, goarch, path}' dist/artifacts.json
             exit 0
           fi
+          chmod +x -- "$BIN"
           "${{ runner.temp }}/wfctl-bin/wfctl" plugin verify-capabilities --binary "$BIN" .
       - name: Verify shipped plugin.json carries tag (post-build)
         run: |
