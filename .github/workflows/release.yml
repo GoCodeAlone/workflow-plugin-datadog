@@ -64,6 +64,12 @@ jobs:
           name: goreleaser-dist
           path: dist/
           retention-days: 1
+      - name: Upload released plugin manifest
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: release-plugin-manifest
+          path: plugin.json
+          retention-days: 1
 
   publish-release:
     if: startsWith(github.ref, 'refs/tags/v')
@@ -77,6 +83,11 @@ jobs:
         with:
           name: goreleaser-dist
           path: dist
+      - name: Download released plugin manifest
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: release-plugin-manifest
+          path: .release
 
       - name: Install wfctl v0.78.0
         env:
@@ -119,7 +130,7 @@ jobs:
           "${{ runner.temp }}/wfctl-bin/wfctl" plugin verify-capabilities --binary "$BIN" .
       - name: Verify shipped plugin.json carries tag (post-build)
         run: |
-          "${{ runner.temp }}/wfctl-bin/wfctl" plugin validate-contract --for-publish --tag "${{ github.ref_name }}" --release-dir . .
+          "${{ runner.temp }}/wfctl-bin/wfctl" plugin validate-contract --for-publish --tag "${{ github.ref_name }}" --release-dir .release .
       - name: Publish GitHub release
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
