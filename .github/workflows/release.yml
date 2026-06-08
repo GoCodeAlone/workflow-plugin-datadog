@@ -23,13 +23,31 @@ jobs:
       - name: Configure Go private modules
         run: git config --global url."https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
 
-      - name: Install wfctl v0.77.0
+      - name: Install wfctl v0.78.0
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WFCTL_VERSION: v0.78.0
         run: |
+          set -euo pipefail
+          runner_arch=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
+          asset="wfctl-linux-${runner_arch}"
+          download_dir="$(mktemp -d)"
+          case "${asset}" in
+            wfctl-linux-amd64) expected_sha="63ac0957274e702930045c9c49955ab2a80b2ee9660da04d4fb4a45c8217f7d2" ;;
+            wfctl-linux-arm64) expected_sha="47a7d380837e404e00930b2a4bc504d583bf606520bc58c29dc984d21e704929" ;;
+            *) echo "::error::unsupported wfctl asset ${asset}"; exit 1 ;;
+          esac
+          gh release download "${WFCTL_VERSION}" \
+            --repo GoCodeAlone/workflow \
+            --pattern "${asset}" \
+            --dir "${download_dir}"
+          actual_sha="$(sha256sum "${download_dir}/${asset}" | awk '{print $1}')"
+          if [ "${actual_sha}" != "${expected_sha}" ]; then
+            echo "::error::wfctl checksum mismatch for ${asset}: expected ${expected_sha}, got ${actual_sha}"
+            exit 1
+          fi
           mkdir -p "${RUNNER_TEMP}/wfctl-bin"
-          curl -sSfL -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -o "${RUNNER_TEMP}/wfctl-bin/wfctl" \
-            "https://github.com/GoCodeAlone/workflow/releases/download/v0.77.0/wfctl-linux-amd64"
-          chmod +x "${RUNNER_TEMP}/wfctl-bin/wfctl"
+          install -m 0755 "${download_dir}/${asset}" "${RUNNER_TEMP}/wfctl-bin/wfctl"
       - name: Validate plugin contract for publish (pre-build)
         run: "${{ runner.temp }}/wfctl-bin/wfctl plugin validate-contract --for-publish --tag ${{ github.ref_name }} ."
       - uses: goreleaser/goreleaser-action@5daf1e915a5f0af01ddbcd89a43b8061ff4f1a89 # v7.2.2
@@ -46,6 +64,12 @@ jobs:
           name: goreleaser-dist
           path: dist/
           retention-days: 1
+      - name: Upload released plugin manifest
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: release-plugin-manifest
+          path: plugin.json
+          retention-days: 1
 
   publish-release:
     if: startsWith(github.ref, 'refs/tags/v')
@@ -59,14 +83,37 @@ jobs:
         with:
           name: goreleaser-dist
           path: dist
+      - name: Download released plugin manifest
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: release-plugin-manifest
+          path: .release
 
-      - name: Install wfctl v0.77.0
+      - name: Install wfctl v0.78.0
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WFCTL_VERSION: v0.78.0
         run: |
+          set -euo pipefail
+          runner_arch=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
+          asset="wfctl-linux-${runner_arch}"
+          download_dir="$(mktemp -d)"
+          case "${asset}" in
+            wfctl-linux-amd64) expected_sha="63ac0957274e702930045c9c49955ab2a80b2ee9660da04d4fb4a45c8217f7d2" ;;
+            wfctl-linux-arm64) expected_sha="47a7d380837e404e00930b2a4bc504d583bf606520bc58c29dc984d21e704929" ;;
+            *) echo "::error::unsupported wfctl asset ${asset}"; exit 1 ;;
+          esac
+          gh release download "${WFCTL_VERSION}" \
+            --repo GoCodeAlone/workflow \
+            --pattern "${asset}" \
+            --dir "${download_dir}"
+          actual_sha="$(sha256sum "${download_dir}/${asset}" | awk '{print $1}')"
+          if [ "${actual_sha}" != "${expected_sha}" ]; then
+            echo "::error::wfctl checksum mismatch for ${asset}: expected ${expected_sha}, got ${actual_sha}"
+            exit 1
+          fi
           mkdir -p "${RUNNER_TEMP}/wfctl-bin"
-          curl -sSfL -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -o "${RUNNER_TEMP}/wfctl-bin/wfctl" \
-            "https://github.com/GoCodeAlone/workflow/releases/download/v0.77.0/wfctl-linux-amd64"
-          chmod +x "${RUNNER_TEMP}/wfctl-bin/wfctl"
+          install -m 0755 "${download_dir}/${asset}" "${RUNNER_TEMP}/wfctl-bin/wfctl"
 
       # workflow#765: runtime truth-check via plugin verify-capabilities.
       - name: Verify capabilities (runtime truth-check)
@@ -83,7 +130,7 @@ jobs:
           "${{ runner.temp }}/wfctl-bin/wfctl" plugin verify-capabilities --binary "$BIN" .
       - name: Verify shipped plugin.json carries tag (post-build)
         run: |
-          "${{ runner.temp }}/wfctl-bin/wfctl" plugin validate-contract --for-publish --tag "${{ github.ref_name }}" --release-dir dist .
+          "${{ runner.temp }}/wfctl-bin/wfctl" plugin validate-contract --for-publish --tag "${{ github.ref_name }}" --release-dir .release .
       - name: Publish GitHub release
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
